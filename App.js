@@ -23,6 +23,7 @@ import { firebaseConfig } from "./firebase-config";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 
 const uri = "https://ak.picdn.net/shutterstock/videos/1060308725/thumb/1.jpg";
 const profilePicture = "https://randomuser.me/api/portraits/men/100.jpg";
@@ -71,135 +72,120 @@ function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri }} style={[styles.image, StyleSheet.absoluteFill]} />
-      <View
-        style={{
-          width: 100,
-          height: 100,
-          backgroundColor: "purple",
-          position: "absolute",
-        }}
-      ></View>
-      <View
-        style={{
-          width: 100,
-          height: 100,
-          backgroundColor: "blue",
-          top: 120,
-          position: "absolute",
-          transform: [{ rotate: "25deg" }],
-        }}
-      ></View>
-      <View
-        style={{
-          width: 100,
-          height: 100,
-          backgroundColor: "red",
-          bottom: 120,
-          position: "absolute",
-          borderRadius: 50,
-          transform: [{ rotate: "50deg" }],
-        }}
-      ></View>
-      <ScrollView
-        contentContainerStyle={{
-          flex: 1,
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <LinearGradient
+        colors={["#70E1F5", "#FFD194"]}
+        style={styles.background}
+        start={[0, 1]}
+        end={[0.75, 1]}
       >
-        <BlurView intensity={100}>
-          <View style={styles.login}>
-            <Image
-              source={{ uri: profilePicture }}
-              style={styles.profilePicture}
-            />
-            <View>
-              <Text style={{ fontSize: 17, fontWeight: "400", color: "white" }}>
-                E-mail
-              </Text>
-              <TextInput
-                onChangeText={(text) => setEmail(text)}
-                style={styles.input}
-                placeholder="betomoedano@outlook.com"
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            width: "100%",
+            height: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <BlurView intensity={100}>
+            <View style={styles.login}>
+              <Image
+                source={{ uri: profilePicture }}
+                style={styles.profilePicture}
               />
-            </View>
-            <View>
-              <Text style={{ fontSize: 17, fontWeight: "400", color: "white" }}>
-                Password
-              </Text>
-              <TextInput
-                onChangeText={(text) => setPassword(text)}
-                style={styles.input}
-                placeholder="password"
-                secureTextEntry={true}
-              />
-            </View>
-            <TouchableOpacity
-              onPress={handleSignIn}
-              style={[styles.button, { backgroundColor: "#00CFEB90" }]}
-            >
-              <Text style={{ fontSize: 14, fontWeight: "400", color: "white" }}>
-                Login
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={handleCreateAccount}
-              style={[styles.button, { backgroundColor: "#6792F090" }]}
-            >
-              <Text style={{ fontSize: 14, fontWeight: "400", color: "white" }}>
-                Create Account
-              </Text>
-            </TouchableOpacity>
-            <View flexDirection="row">
+              <View>
+                <Text
+                  style={{ fontSize: 17, fontWeight: "400", color: "white" }}
+                >
+                  E-mail
+                </Text>
+                <TextInput
+                  onChangeText={(text) => setEmail(text)}
+                  style={styles.input}
+                  placeholder="betomoedano@outlook.com"
+                />
+              </View>
+              <View>
+                <Text
+                  style={{ fontSize: 17, fontWeight: "400", color: "white" }}
+                >
+                  Password
+                </Text>
+                <TextInput
+                  onChangeText={(text) => setPassword(text)}
+                  style={styles.input}
+                  placeholder="password"
+                  secureTextEntry={true}
+                />
+              </View>
               <TouchableOpacity
                 onPress={handleSignIn}
-                style={[
-                  styles.button,
-                  styles.social,
-                  { backgroundColor: "#00CFEB90" },
-                ]}
+                style={[styles.button, { backgroundColor: "#00CFEB90" }]}
               >
                 <Text
                   style={{ fontSize: 14, fontWeight: "400", color: "white" }}
                 >
-                  G+
+                  Login
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={handleSignIn}
-                style={[
-                  styles.button,
-                  styles.social,
-                  { backgroundColor: "#00CFEB90" },
-                ]}
+                onPress={handleCreateAccount}
+                style={[styles.button, { backgroundColor: "#6792F090" }]}
               >
                 <Text
                   style={{ fontSize: 14, fontWeight: "400", color: "white" }}
                 >
-                  Apple
+                  Create Account
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={handleSignIn}
-                style={[
-                  styles.button,
-                  styles.social,
-                  { backgroundColor: "#00CFEB90" },
-                ]}
-              >
-                <Text
-                  style={{ fontSize: 14, fontWeight: "400", color: "white" }}
+              <View flexDirection="row">
+                <TouchableOpacity
+                  onPress={handleSignIn}
+                  style={[
+                    styles.button,
+                    styles.social,
+                    { backgroundColor: "#00CFEB90" },
+                  ]}
                 >
-                  Fb
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
+                  >
+                    G+
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleSignIn}
+                  style={[
+                    styles.button,
+                    styles.social,
+                    { backgroundColor: "#00CFEB90" },
+                  ]}
+                >
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
+                  >
+                    Apple
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleSignIn}
+                  style={[
+                    styles.button,
+                    styles.social,
+                    { backgroundColor: "#00CFEB90" },
+                  ]}
+                >
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
+                  >
+                    Fb
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        </BlurView>
-      </ScrollView>
+          </BlurView>
+        </ScrollView>
+      </LinearGradient>
     </View>
   );
 }
@@ -220,9 +206,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
   },
   image: {
     width: "100%",
