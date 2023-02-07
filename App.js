@@ -14,6 +14,15 @@ function HomeScreen() {
   );
 }
 
+function NewUserScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>New User Screen</Text>
+    </View>
+  );
+}
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -21,7 +30,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={NewUserScreen} />
+        <Stack.Screen name="NewUser" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

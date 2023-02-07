@@ -19,13 +19,11 @@ import {
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase-config";
 
-import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -59,7 +57,7 @@ function LoginScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["#70E1F5", "#FFD194"]}
+        colors={[ "#FFD194", "#70E1F5"]}
         style={styles.background}
         start={[0, 1]}
         end={[0.75, 1]}
@@ -79,6 +77,18 @@ function LoginScreen() {
                 source={require("../../assets/nidit-logo.png")}
                 style={styles.logoPicture}
               />
+              <View style={{ top: -10 }}>
+                <Text style={styles.registerText}>
+                  ¿Eres nuevo?
+                  <Text
+                    style={styles.linkText}
+                    onPress={() => navigation.navigate("NewUser")}
+                  >
+                    {" "}
+                    Crear una cuenta
+                  </Text>
+                </Text>
+              </View>
               <View>
                 <Text
                   style={{ fontSize: 17, fontWeight: "400", color: "white" }}
@@ -199,6 +209,17 @@ const styles = StyleSheet.create({
     width: 118,
     height: 160,
     top: 20,
+    bottom: 0,
+  },
+  registerText: {
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    fontSize: 14,
+    lineHeight: 16,
+    textAlign: "center",
+  },
+  linkText: {
+    color: "#F5B042",
   },
   input: {
     width: 250,
