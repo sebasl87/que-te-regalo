@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { TextInput } from "@react-native-material/core";
+import { TextInput, Button } from "react-native-paper";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -88,23 +88,18 @@ function LoginScreen({ navigation }) {
             </View>
             <TextInput
               label="Usuario"
-              variant="outlined"
+              mode="outlined"
               style={styles.inputText}
             />
             <TextInput
               label="Contraseña"
-              variant="outlined"
+              mode="outlined"
               style={styles.inputText}
             />
 
-            <TouchableOpacity
-              onPress={handleSignIn}
-              style={[styles.button, { backgroundColor: "#00CFEB90" }]}
-            >
-              <Text style={{ fontSize: 14, fontWeight: "400", color: "white" }}>
-                Login
-              </Text>
-            </TouchableOpacity>
+            <Button style={{ marginVertical: 8 }} mode="contained">
+              Ingresar
+            </Button>
             <TouchableOpacity
               onPress={handleCreateAccount}
               style={[styles.button, { backgroundColor: "#6792F090" }]}
@@ -194,7 +189,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontWeight: "400",
     fontSize: 14,
-    // lineHeight: 16,
+    lineHeight: 16,
     textAlign: "center",
   },
   linkText: {
@@ -205,6 +200,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 8,
     marginTop: 16,
+    backgroundColor: "rgba(255, 255, 255, 0)",
   },
   button: {
     width: 250,

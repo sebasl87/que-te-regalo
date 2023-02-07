@@ -3,6 +3,10 @@ import { Text, StyleSheet, View } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  MD3LightTheme as DefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
 
 import LoginScreen from "./src/components/LoginScreen";
 
@@ -22,17 +26,28 @@ function NewUserScreen() {
   );
 }
 
-
 const Stack = createNativeStackNavigator();
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "#F5B042",
+    secondary: "70E1F5",
+    tertiary: "#a1b2c3",
+  },
+};
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={NewUserScreen} />
-        <Stack.Screen name="NewUser" component={HomeScreen} />
-      </Stack.Navigator>
+      <PaperProvider theme={theme}>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Home" component={NewUserScreen} />
+          <Stack.Screen name="NewUser" component={HomeScreen} />
+        </Stack.Navigator>
+      </PaperProvider>
     </NavigationContainer>
   );
 }
