@@ -6,11 +6,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  TextInput,
   Alert,
 } from "react-native";
-import { BlurView } from "expo-blur";
-
+import { TextInput } from "@react-native-material/core";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -57,7 +55,7 @@ function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={[ "#FFD194", "#70E1F5"]}
+        colors={["#FFD194", "#70E1F5"]}
         style={styles.background}
         start={[0, 1]}
         end={[0.75, 1]}
@@ -71,115 +69,95 @@ function LoginScreen({ navigation }) {
             justifyContent: "center",
           }}
         >
-          <BlurView intensity={100}>
-            <View style={styles.login}>
-              <Image
-                source={require("../../assets/nidit-logo.png")}
-                style={styles.logoPicture}
-              />
-              <View style={{ top: -10 }}>
-                <Text style={styles.registerText}>
-                  ¿Eres nuevo?
-                  <Text
-                    style={styles.linkText}
-                    onPress={() => navigation.navigate("NewUser")}
-                  >
-                    {" "}
-                    Crear una cuenta
-                  </Text>
-                </Text>
-              </View>
-              <View>
+          <View style={styles.login}>
+            <Image
+              source={require("../../assets/nidit-logo.png")}
+              style={styles.logoPicture}
+            />
+            <View style={{ top: -10 }}>
+              <Text style={styles.registerText}>
+                ¿Eres nuevo?
                 <Text
-                  style={{ fontSize: 17, fontWeight: "400", color: "white" }}
+                  style={styles.linkText}
+                  onPress={() => navigation.navigate("NewUser")}
                 >
-                  E-mail
+                  {" "}
+                  Crear una cuenta
                 </Text>
-                <TextInput
-                  onChangeText={(text) => setEmail(text)}
-                  style={styles.input}
-                  placeholder="betomoedano@outlook.com"
-                />
-              </View>
-              <View>
-                <Text
-                  style={{ fontSize: 17, fontWeight: "400", color: "white" }}
-                >
-                  Password
-                </Text>
-                <TextInput
-                  onChangeText={(text) => setPassword(text)}
-                  style={styles.input}
-                  placeholder="password"
-                  secureTextEntry={true}
-                />
-              </View>
+              </Text>
+            </View>
+            <TextInput
+              label="Usuario"
+              variant="outlined"
+              style={styles.inputText}
+            />
+            <TextInput
+              label="Contraseña"
+              variant="outlined"
+              style={styles.inputText}
+            />
+
+            <TouchableOpacity
+              onPress={handleSignIn}
+              style={[styles.button, { backgroundColor: "#00CFEB90" }]}
+            >
+              <Text style={{ fontSize: 14, fontWeight: "400", color: "white" }}>
+                Login
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleCreateAccount}
+              style={[styles.button, { backgroundColor: "#6792F090" }]}
+            >
+              <Text style={{ fontSize: 14, fontWeight: "400", color: "white" }}>
+                Create Account
+              </Text>
+            </TouchableOpacity>
+            <View flexDirection="row">
               <TouchableOpacity
                 onPress={handleSignIn}
-                style={[styles.button, { backgroundColor: "#00CFEB90" }]}
+                style={[
+                  styles.button,
+                  styles.social,
+                  { backgroundColor: "#00CFEB90" },
+                ]}
               >
                 <Text
                   style={{ fontSize: 14, fontWeight: "400", color: "white" }}
                 >
-                  Login
+                  G+
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={handleCreateAccount}
-                style={[styles.button, { backgroundColor: "#6792F090" }]}
+                onPress={handleSignIn}
+                style={[
+                  styles.button,
+                  styles.social,
+                  { backgroundColor: "#00CFEB90" },
+                ]}
               >
                 <Text
                   style={{ fontSize: 14, fontWeight: "400", color: "white" }}
                 >
-                  Create Account
+                  Apple
                 </Text>
               </TouchableOpacity>
-              <View flexDirection="row">
-                <TouchableOpacity
-                  onPress={handleSignIn}
-                  style={[
-                    styles.button,
-                    styles.social,
-                    { backgroundColor: "#00CFEB90" },
-                  ]}
+              <TouchableOpacity
+                onPress={handleSignIn}
+                style={[
+                  styles.button,
+                  styles.social,
+                  { backgroundColor: "#00CFEB90" },
+                ]}
+              >
+                <Text
+                  style={{ fontSize: 14, fontWeight: "400", color: "white" }}
                 >
-                  <Text
-                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
-                  >
-                    G+
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleSignIn}
-                  style={[
-                    styles.button,
-                    styles.social,
-                    { backgroundColor: "#00CFEB90" },
-                  ]}
-                >
-                  <Text
-                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
-                  >
-                    Apple
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleSignIn}
-                  style={[
-                    styles.button,
-                    styles.social,
-                    { backgroundColor: "#00CFEB90" },
-                  ]}
-                >
-                  <Text
-                    style={{ fontSize: 14, fontWeight: "400", color: "white" }}
-                  >
-                    Fb
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                  Fb
+                </Text>
+              </TouchableOpacity>
             </View>
-          </BlurView>
+          </View>
         </ScrollView>
       </LinearGradient>
     </View>
@@ -198,6 +176,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   login: {
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
     width: 336,
     height: 533,
     borderColor: "#000",
@@ -215,22 +194,17 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontWeight: "400",
     fontSize: 14,
-    lineHeight: 16,
+    // lineHeight: 16,
     textAlign: "center",
   },
   linkText: {
     color: "#F5B042",
   },
-  input: {
-    width: 250,
-    height: 40,
-    borderColor: "#fff",
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
-    marginVertical: 6,
-    backgroundColor: "#ffffff90",
-    marginBottom: 20,
+  inputText: {
+    width: 301,
+    height: 56,
+    borderRadius: 8,
+    marginTop: 16,
   },
   button: {
     width: 250,
