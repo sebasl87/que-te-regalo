@@ -15,9 +15,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
+import { firebaseConfig } from "../../../firebase-config";
 
 import { LinearGradient } from "expo-linear-gradient";
+import LoginWithUser from "../LoginWithUser";
+import DividerWithText from "../DividerWithText";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -71,7 +73,7 @@ function LoginScreen({ navigation }) {
         >
           <View style={styles.login}>
             <Image
-              source={require("../../assets/nidit-logo.png")}
+              source={require("../../../assets/nidit-logo.png")}
               style={styles.logoPicture}
             />
             <View style={{ top: -10 }}>
@@ -86,20 +88,20 @@ function LoginScreen({ navigation }) {
                 </Text>
               </Text>
             </View>
-            <TextInput
-              label="Usuario"
-              mode="outlined"
-              style={styles.inputText}
-            />
-            <TextInput
-              label="Contraseña"
-              mode="outlined"
-              style={styles.inputText}
-            />
-
-            <Button style={{ marginVertical: 8 }} mode="contained">
-              Ingresar
-            </Button>
+            <LoginWithUser />
+            <View>
+              <Text style={styles.forgotText}>
+                Ups! Olvidé mi
+                <Text
+                  style={styles.linkText}
+                  onPress={() => navigation.navigate("ForgotPassword")}
+                >
+                  {" "}
+                  contraseña
+                </Text>
+              </Text>
+            </View>
+            <DividerWithText text="O puedes"/>
             <TouchableOpacity
               onPress={handleCreateAccount}
               style={[styles.button, { backgroundColor: "#6792F090" }]}
@@ -195,12 +197,19 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#F5B042",
   },
+  forgotText: {
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    fontSize: 12,
+    lineHeight: 14,
+    textAlign: "center",
+  },
   inputText: {
     width: 301,
     height: 56,
     borderRadius: 8,
     marginTop: 16,
-    backgroundColor: "rgba(255, 255, 255, 0)",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
   },
   button: {
     width: 250,
