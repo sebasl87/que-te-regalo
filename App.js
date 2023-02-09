@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
 
-import LoginScreen from "./src/components/Screens/LoginScreen";
+import { LoginScreen, RegisterScreen } from "./src/screens";
 import theme from "./customTheme";
 
 function HomeScreen() {
@@ -40,12 +40,14 @@ export default function App() {
       <PaperProvider theme={theme}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
+          />
           <Stack.Screen name="Home" component={NewUserScreen} />
-          <Stack.Screen name="NewUser" component={HomeScreen} />
+          <Stack.Screen name="NewUser" component={RegisterScreen} />
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
   );
 }
-

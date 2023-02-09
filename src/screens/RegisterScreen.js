@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { Image, Text, StyleSheet, View, ScrollView, Alert } from "react-native";
-import { Button } from "react-native-paper";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../../firebase-config";
+import { firebaseConfig } from "../../firebase-config";
 
 import { LinearGradient } from "expo-linear-gradient";
-import LoginWithUser from "../LoginWithUser";
-import DividerWithText from "../DividerWithText";
-import SocialMediaButton from "../SocialMediaButton";
+import LoginWithUser from "../components/LoginWithUser";
+import DividerWithText from "../components/DividerWithText";
+import SocialMediaButton from "../components/SocialMediaButton";
 
-function LoginScreen({ navigation }) {
+function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -75,7 +74,7 @@ function LoginScreen({ navigation }) {
         >
           <View style={styles.login}>
             <Image
-              source={require("../../../assets/nidit-logo.png")}
+              source={require("../../assets/nidit-logo.png")}
               style={styles.logoPicture}
             />
             <View style={{ top: -10 }}>
@@ -107,37 +106,24 @@ function LoginScreen({ navigation }) {
             {BOTONES_SOCIALES.map((b) => {
               const iconToDisplay =
                 b.name === "apple"
-                  ? require("../../../assets/appleI.png")
+                  ? require("../../assets/appleI.png")
                   : b.name === "facebook"
-                  ? require("../../../assets/facebookI.png")
-                  : require("../../../assets/googleI.png");
+                  ? require("../../assets/facebookI.png")
+                  : require("../../assets/googleI.png");
               return (
                 <SocialMediaButton
                   key={b.id}
                   text={b.text}
                   handleCreateAccount={handleCreateAccount}
                   icono={() => (
-                    <Image source={iconToDisplay} style={{ width: 30, height: 30 }} />
+                    <Image
+                      source={iconToDisplay}
+                      style={{ width: 30, height: 30 }}
+                    />
                   )}
                 />
               );
             })}
-            {/* <Button
-              mode="contained"
-              onPress={handleCreateAccount}
-              style={styles.button}
-              // icon={require("../../../assets/appleI.png")}
-              icon={() => (
-                <Image
-                  source={require("../../../assets/appleI.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-              )}
-              buttonColor="rgba(255, 255, 255, 0.8)"
-              textColor="#000"
-            >
-              Ingresar con Apple
-            </Button> */}
           </View>
         </ScrollView>
       </LinearGradient>
@@ -211,4 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
