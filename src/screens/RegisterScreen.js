@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { Image, Text, StyleSheet, View, ScrollView, Alert, TouchableHighlight } from "react-native";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+  Image,
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  Alert,
+  TouchableHighlight,
+} from "react-native";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase-config";
 
@@ -23,26 +27,12 @@ function RegisterScreen({ navigation }) {
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Account created!");
         const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-        Alert.alert(error.message);
-      });
-  };
-
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Signed in!");
-        const user = userCredential.user;
-        console.log(user);
         navigation.navigate("Home");
       })
       .catch((error) => {
         console.log(error);
+        Alert.alert(error.message);
       });
   };
 
@@ -75,26 +65,31 @@ function RegisterScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-                <TouchableHighlight onPress={() => navigation.navigate("Login")}>
-            <Image
-              source={require("../../assets/back.png")}
-              style={styles.backButton}
-            />
-            </TouchableHighlight>
-            </View>
-            <View style={styles.logo}>
-            <Image
-              source={require("../../assets/nidit-logo.png")}
-              style={styles.logoPicture}
-            />
-            </View>
+                <TouchableHighlight
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  <Image
+                    source={require("../../assets/back.png")}
+                    style={styles.backButton}
+                  />
+                </TouchableHighlight>
+              </View>
+              <View style={styles.logo}>
+                <Image
+                  source={require("../../assets/nidit-logo.png")}
+                  style={styles.logoPicture}
+                />
+              </View>
             </View>
             <View style={{ top: -10 }}>
-              <Text style={styles.registerText}>
-                Regístrate con tu mail                
-              </Text>
+              <Text style={styles.registerText}>Regístrate con tu mail</Text>
             </View>
-            <LoginWithUser textButton="Registrarme" />            
+            <LoginWithUser
+              handleOnChangeTextPass={(text) => setPassword(text)}
+              handleOnChangeTextEmail={(text) => setEmail(text)}
+              handleOnPress={handleCreateAccount}
+              textButton="Registrarme"
+            />
             <DividerWithText text="O puedes" />
             {BOTONES_SOCIALES.map((b) => {
               const iconToDisplay =
@@ -140,10 +135,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   back: {
-   top: 24,
-   left: 16,
+    top: 24,
+    left: 16,
   },
-  logo: {    
+  logo: {
     width: "100%",
     alignItems: "center",
     right: 10,
