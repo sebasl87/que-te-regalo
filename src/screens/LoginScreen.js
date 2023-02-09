@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
+import { BOTONES_SOCIALES } from "../constants";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -46,15 +47,7 @@ function LoginScreen({ navigation }) {
       });
   };
 
-  const BOTONES_SOCIALES = [
-    { text: "Ingresar con Apple", name: "apple", id: 0 },
-    {
-      text: "Ingresar con Facebook",
-      name: "facebook",
-      id: 1,
-    },
-    { text: "Ingresar con Google", name: "google", id: 2 },
-  ];
+  
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -89,7 +82,11 @@ function LoginScreen({ navigation }) {
                 </Text>
               </Text>
             </View>
-            <LoginWithUser />
+            <LoginWithUser
+              handleOnChangeTextPass={(text) => setPassword(text)}
+              handleOnChangeTextEmail={(text) => setEmail(text)}
+              handleOnPress={handleSignIn}
+            />
             <View>
               <Text style={styles.forgotText}>
                 Ups! Olvidé mi

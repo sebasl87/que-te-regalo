@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-native-paper";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 const SocialMediaButton = ({ text, handleCreateAccount, icono }) => {
   return (

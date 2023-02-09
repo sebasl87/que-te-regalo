@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
 
 import { LoginScreen, RegisterScreen } from "./src/screens";
-import theme from "./customTheme";
+import theme from "./src/customTheme";
 
 function HomeScreen() {
   return (

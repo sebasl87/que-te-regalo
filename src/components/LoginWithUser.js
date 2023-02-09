@@ -1,40 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
 
-function LoginWithUser({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Signed in!");
-        const user = userCredential.user;
-        console.log(user);
-        navigation.navigate("Home");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
+function LoginWithUser({
+  handleOnChangeTextEmail,
+  handleOnChangeTextPass,
+  handleOnPress,
+}) {
   return (
     <>
       <TextInput
         label="Usuario"
         mode="outlined"
         style={{ ...styles.inputText, marginTop: 0 }}
+        onChangeText={handleOnChangeTextEmail}
       />
-      <TextInput label="Contraseña" mode="outlined" style={styles.inputText} />
+      <TextInput
+        label="Contraseña"
+        mode="outlined"
+        style={styles.inputText}
+        onChangeText={handleOnChangeTextPass}
+      />
 
-      <Button style={{ marginVertical: 8, borderRadius: 4 }} mode="contained">
+      <Button
+        onPress={handleOnPress}
+        style={{ marginVertical: 8, borderRadius: 4 }}
+        mode="contained"
+      >
         Ingresar
       </Button>
     </>
