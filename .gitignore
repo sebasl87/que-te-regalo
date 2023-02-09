@@ -13,3 +13,4 @@ firebase-config.js
 
 # macOS
 .DS_Store
+.others/
