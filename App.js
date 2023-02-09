@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
 
-import { LoginScreen, RegisterScreen } from "./src/screens";
+import { LoginScreen, RegisterScreen, ForgotPasswordScreen } from "./src/screens";
 import theme from "./src/customTheme";
 
 function HomeScreen() {
@@ -24,14 +24,6 @@ function NewUserScreen() {
   );
 }
 
-function ForgotPasswordScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Forgot Pssword Screen</Text>
-    </View>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -45,7 +37,7 @@ export default function App() {
             component={ForgotPasswordScreen}
           />
           <Stack.Screen name="Home" component={NewUserScreen} />
-          <Stack.Screen name="NewUser" component={RegisterScreen} />
+          <Stack.Screen name="NewUser" component={RegisterScreen} />          
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
