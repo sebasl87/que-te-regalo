@@ -6,6 +6,7 @@ function LoginWithUser({
   handleOnChangeTextEmail,
   handleOnChangeTextPass,
   handleOnPress,
+  textButton,
 }) {
   return (
     <>
@@ -27,7 +28,7 @@ function LoginWithUser({
         style={{ marginVertical: 8, borderRadius: 4 }}
         mode="contained"
       >
-        Ingresar
+        {textButton}
       </Button>
     </>
   );

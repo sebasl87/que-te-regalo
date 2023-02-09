@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Text, StyleSheet, View, ScrollView, Alert } from "react-native";
+import { Image, Text, StyleSheet, View, ScrollView, Alert, TouchableHighlight } from "react-native";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -73,35 +73,28 @@ function RegisterScreen({ navigation }) {
           }}
         >
           <View style={styles.login}>
+            <View style={styles.logoAndBack}>
+              <View style={styles.back}>
+                <TouchableHighlight onPress={() => navigation.navigate("Login")}>
+            <Image
+              source={require("../../assets/back.png")}
+              style={styles.backButton}
+            />
+            </TouchableHighlight>
+            </View>
+            <View style={styles.logo}>
             <Image
               source={require("../../assets/nidit-logo.png")}
               style={styles.logoPicture}
             />
+            </View>
+            </View>
             <View style={{ top: -10 }}>
               <Text style={styles.registerText}>
-                ¿Eres nuevo?
-                <Text
-                  style={styles.linkText}
-                  onPress={() => navigation.navigate("NewUser")}
-                >
-                  {" "}
-                  Crear una cuenta
-                </Text>
+                Regístrate con tu mail                
               </Text>
             </View>
-            <LoginWithUser />
-            <View>
-              <Text style={styles.forgotText}>
-                Ups! Olvidé mi
-                <Text
-                  style={styles.linkText}
-                  onPress={() => navigation.navigate("ForgotPassword")}
-                >
-                  {" "}
-                  contraseña
-                </Text>
-              </Text>
-            </View>
+            <LoginWithUser textButton="Registrarme" />            
             <DividerWithText text="O puedes" />
             {BOTONES_SOCIALES.map((b) => {
               const iconToDisplay =
@@ -142,6 +135,19 @@ const styles = StyleSheet.create({
     top: 0,
     height: "100%",
   },
+  logoAndBack: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  back: {
+   top: 24,
+   left: 16,
+  },
+  logo: {    
+    width: "100%",
+    alignItems: "center",
+    right: 10,
+  },
   login: {
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     width: 336,
@@ -157,11 +163,17 @@ const styles = StyleSheet.create({
     top: 20,
     bottom: 0,
   },
+  backButton: {
+    width: 14,
+    height: 25,
+    top: 0,
+    bottom: 0,
+  },
   registerText: {
     fontFamily: "Roboto",
     fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 16,
+    fontSize: 16,
+    lineHeight: 19,
     textAlign: "center",
   },
   linkText: {
