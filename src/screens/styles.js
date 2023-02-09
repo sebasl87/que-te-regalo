@@ -1,0 +1,107 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    background: {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        height: "100%",
+    },
+    logoAndBack: {
+        flexDirection: "row",
+        width: "100%",
+    },
+    back: {
+        top: 24,
+        left: 16,
+    },
+    backButton: {
+        width: 14,
+        height: 25,
+        top: 0,
+        bottom: 0,
+    },
+    login: {
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
+        width: 336,
+        borderColor: "rgba(0, 0, 0, 0.5)",
+        borderWidth: 1,
+        borderRadius: 16,
+        alignItems: "center",
+    },
+    logoPicture: {
+        width: 118,
+        height: 160,
+        top: 20,
+        bottom: 0,
+    },
+    registerText: {
+        fontFamily: "Roboto",
+        fontWeight: "400",
+        fontSize: 16,
+        lineHeight: 16,
+        textAlign: "center",
+    },
+    linkText: {
+        color: "#F5B042",
+        fontFamily: "Roboto",
+        fontWeight: "800",
+        fontSize: 16,
+        lineHeight: 16,
+        textAlign: "center",
+    },
+    forgotText: {
+        fontFamily: "Roboto",
+        fontWeight: "400",
+        fontSize: 16,
+        lineHeight: 16,
+        textAlign: "center",
+    },
+    inputText: {
+        width: 301,
+        height: 56,
+        borderRadius: 8,
+        marginTop: 16,
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
+    },
+    button: {
+        width: 200,
+        height: "auto",
+        borderRadius: 10,
+        fontSize: 12,
+        padding: 0,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+    },
+    social: {
+        width: 50,
+        marginHorizontal: 6,
+    },
+    logoWithBack: {
+        width: "100%",
+        alignItems: "center",
+        right: 10,
+    },
+    registerTextHight: {
+        fontFamily: "Roboto",
+        fontWeight: "400",
+        fontSize: 18,
+        lineHeight: 19,
+        textAlign: "center",
+    },
+    instructionsText: {
+        fontFamily: "Roboto",
+        fontWeight: "400",
+        fontSize: 14,
+        lineHeight: 16,
+        textAlign: "left",
+        color: "rgba(0, 0, 0, 0.8)",
+        marginTop: 16,
+        marginBottom: 8,
+    },
+});

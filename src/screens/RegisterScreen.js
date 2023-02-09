@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Text, StyleSheet, View, ScrollView, Alert, TouchableHighlight } from "react-native";
+import { Image, Text, View, ScrollView, Alert, TouchableHighlight } from "react-native";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
+import { styles } from "./styles";
 
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -47,13 +48,13 @@ function RegisterScreen({ navigation }) {
   };
 
   const BOTONES_SOCIALES = [
-    { text: "Ingresar con Apple", name: "apple", id: 0 },
+    { text: "Registrarme con Apple", name: "apple", id: 0 },
     {
-      text: "Ingresar con Facebook",
+      text: "Registrarme con Facebook",
       name: "facebook",
       id: 1,
     },
-    { text: "Ingresar con Google", name: "google", id: 2 },
+    { text: "Registrarme con Google", name: "google", id: 2 },
   ];
   return (
     <View style={styles.container}>
@@ -76,137 +77,55 @@ function RegisterScreen({ navigation }) {
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
                 <TouchableHighlight onPress={() => navigation.navigate("Login")}>
-            <Image
-              source={require("../../assets/back.png")}
-              style={styles.backButton}
-            />
-            </TouchableHighlight>
-            </View>
-            <View style={styles.logo}>
-            <Image
-              source={require("../../assets/nidit-logo.png")}
-              style={styles.logoPicture}
-            />
-            </View>
+                  <Image
+                    source={require("../../assets/back.png")}
+                    style={styles.backButton}
+                  />
+                </TouchableHighlight>
+              </View>
+              <View style={styles.logoWithBack}>
+                <Image
+                  source={require("../../assets/nidit-logo.png")}
+                  style={styles.logoPicture}
+                />
+              </View>
             </View>
             <View style={{ top: -10 }}>
-              <Text style={styles.registerText}>
-                Regístrate con tu mail                
+              <Text style={styles.registerTextHight}>
+                Regístrate con tu mail
               </Text>
             </View>
-            <LoginWithUser textButton="Registrarme" />            
+            <LoginWithUser textButton="Registrarme" />
             <DividerWithText text="O puedes" />
-            {BOTONES_SOCIALES.map((b) => {
-              const iconToDisplay =
-                b.name === "apple"
-                  ? require("../../assets/appleI.png")
-                  : b.name === "facebook"
-                  ? require("../../assets/facebookI.png")
-                  : require("../../assets/googleI.png");
-              return (
-                <SocialMediaButton
-                  key={b.id}
-                  text={b.text}
-                  handleCreateAccount={handleCreateAccount}
-                  icono={() => (
-                    <Image
-                      source={iconToDisplay}
-                      style={{ width: 30, height: 30 }}
-                    />
-                  )}
-                />
-              );
-            })}
+            <View style={{ marginTop: 8, marginBottom: 24 }}>
+              {BOTONES_SOCIALES.map((b) => {
+                const iconToDisplay =
+                  b.name === "apple"
+                    ? require("../../assets/appleI.png")
+                    : b.name === "facebook"
+                      ? require("../../assets/facebookI.png")
+                      : require("../../assets/googleI.png");
+                return (
+                  <SocialMediaButton
+                    key={b.id}
+                    text={b.text}
+                    handleCreateAccount={handleCreateAccount}
+                    icono={() => (
+                      <Image
+                        source={iconToDisplay}
+                        style={{ width: 30, height: 30 }}
+                      />
+                    )}
+                    large
+                  />
+                );
+              })}
+            </View>
           </View>
         </ScrollView>
       </LinearGradient>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: "100%",
-  },
-  logoAndBack: {
-    flexDirection: "row",
-    width: "100%",
-  },
-  back: {
-   top: 24,
-   left: 16,
-  },
-  logo: {    
-    width: "100%",
-    alignItems: "center",
-    right: 10,
-  },
-  login: {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    width: 336,
-    // height: 533,
-    borderColor: "#000",
-    borderWidth: 1.1,
-    borderRadius: 16,
-    alignItems: "center",
-  },
-  logoPicture: {
-    width: 118,
-    height: 160,
-    top: 20,
-    bottom: 0,
-  },
-  backButton: {
-    width: 14,
-    height: 25,
-    top: 0,
-    bottom: 0,
-  },
-  registerText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 16,
-    lineHeight: 19,
-    textAlign: "center",
-  },
-  linkText: {
-    color: "#F5B042",
-  },
-  forgotText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 12,
-    lineHeight: 14,
-    textAlign: "center",
-  },
-  inputText: {
-    width: 301,
-    height: 56,
-    borderRadius: 8,
-    marginTop: 16,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-  },
-  button: {
-    width: 200,
-    height: "auto",
-    borderRadius: 10,
-    fontSize: 12,
-    padding: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-  },
-  social: {
-    width: 50,
-    marginHorizontal: 6,
-  },
-});
 
 export default RegisterScreen;
