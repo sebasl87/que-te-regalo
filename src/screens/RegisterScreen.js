@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Image, Text, View, ScrollView, Alert, TouchableHighlight } from "react-native";
 import {
   Image,
-  Text,
-  StyleSheet,
+  Text,  
   View,
   ScrollView,
   Alert,
@@ -67,7 +65,7 @@ function RegisterScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-                <TouchableHighlight onPress={() => navigation.navigate("Login")}>
+                <TouchableHighlight onPress={() => navigation.navigate("nidit!")}>
                   <Image
                     source={require("../../assets/back.png")}
                     style={styles.backButton}
