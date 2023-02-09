@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Image, Text, View, ScrollView, Alert, TouchableHighlight } from "react-native";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+  Image,
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  Alert,
+  TouchableHighlight,
+} from "react-native";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase-config";
 
@@ -24,26 +29,12 @@ function RegisterScreen({ navigation }) {
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Account created!");
         const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-        Alert.alert(error.message);
-      });
-  };
-
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Signed in!");
-        const user = userCredential.user;
-        console.log(user);
         navigation.navigate("Home");
       })
       .catch((error) => {
         console.log(error);
+        Alert.alert(error.message);
       });
   };
 
@@ -95,7 +86,12 @@ function RegisterScreen({ navigation }) {
                 Regístrate con tu mail
               </Text>
             </View>
-            <LoginWithUser textButton="Registrarme" />
+            <LoginWithUser
+              handleOnChangeTextPass={(text) => setPassword(text)}
+              handleOnChangeTextEmail={(text) => setEmail(text)}
+              handleOnPress={handleCreateAccount}
+              textButton="Registrarme"
+            />
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
               {BOTONES_SOCIALES.map((b) => {

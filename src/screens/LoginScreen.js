@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Image, Text, View, ScrollView, Alert } from "react-native";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
@@ -22,25 +21,10 @@ function LoginScreen({ navigation }) {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  const handleCreateAccount = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Account created!");
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-        Alert.alert(error.message);
-      });
-  };
-
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Signed in!");
         const user = userCredential.user;
-        console.log(user);
         navigation.navigate("Home");
       })
       .catch((error) => {
@@ -114,7 +98,7 @@ function LoginScreen({ navigation }) {
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={handleCreateAccount}
+                    handleCreateAccount={()=>console.log('prueba')}
                     icono={() => (
                       <Image
                         source={iconToDisplay}

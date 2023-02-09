@@ -30,8 +30,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <PaperProvider theme={theme}>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Navigator initialRouteName="nidit!">
+          <Stack.Screen name="nidit!" component={LoginScreen} />
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
