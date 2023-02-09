@@ -86,6 +86,7 @@ function LoginScreen({ navigation }) {
               handleOnChangeTextPass={(text) => setPassword(text)}
               handleOnChangeTextEmail={(text) => setEmail(text)}
               handleOnPress={handleSignIn}
+              textButton="Ingresar"
             />
             <View>
               <Text style={styles.forgotText}>

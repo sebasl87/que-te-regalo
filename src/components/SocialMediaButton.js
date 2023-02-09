@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     height: "auto",
     borderRadius: 10,
     padding: 0,
-    alignItems: "left",
+    // alignItems: "left",
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     marginBottom: 8,
   },
