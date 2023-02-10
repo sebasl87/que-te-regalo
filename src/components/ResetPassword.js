@@ -4,7 +4,6 @@ import { TextInput, Button } from "react-native-paper";
 
 function ResetPassword({
   handleOnChangeTextEmail,
-  handleOnChangeTextPass,
   handleOnPress,
   textButton,
 }) {
