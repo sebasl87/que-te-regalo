@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   Image,
-  Text,  
+  Text,
   View,
   ScrollView,
   Alert,
@@ -65,7 +65,7 @@ function RegisterScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-                <TouchableHighlight onPress={() => navigation.navigate("nidit!")} hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
+                <TouchableHighlight onPress={() => navigation.navigate("nidit!")} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
                   <Image
                     source={require("../../assets/back.png")}
                     style={styles.backButton}
