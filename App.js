@@ -5,7 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
 
-import { LoginScreen, RegisterScreen, ForgotPasswordScreen } from "./src/screens";
+import {
+  LoginScreen,
+  RegisterScreen,
+  ForgotPasswordScreen,
+} from "./src/screens";
 import theme from "./src/customTheme";
 
 function HomeScreen() {
@@ -31,13 +35,13 @@ export default function App() {
     <NavigationContainer>
       <PaperProvider theme={theme}>
         <Stack.Navigator initialRouteName="nidit!">
-          <Stack.Screen name="nidit!" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
           />
           <Stack.Screen name="Home" component={NewUserScreen} />
-          <Stack.Screen name="NewUser" component={RegisterScreen} />          
+          <Stack.Screen name="NewUser" component={RegisterScreen} />
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
