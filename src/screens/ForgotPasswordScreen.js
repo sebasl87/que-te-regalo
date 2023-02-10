@@ -21,10 +21,12 @@ function ForgotPasswordScreen({ navigation }) {
   const auth = getAuth(app);
 
   const resetPassword = () => {
-    return sendPasswordResetEmail(auth, email).then((a) => {
-      alert("Password reset email sent");
-      
-    }).then(()=>navigation.navigate("Login"))
+    return sendPasswordResetEmail(auth, email)
+      .then((a) => {
+        alert("Password reset email sent");
+        navigation.navigate("Login");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

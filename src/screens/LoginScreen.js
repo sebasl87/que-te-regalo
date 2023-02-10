@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Text, StyleSheet, View, ScrollView } from "react-native";
+import { Image, Text, View, ScrollView, Alert } from "react-native";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -11,7 +11,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
-import { BOTONES_SOCIALES } from "../constants";
+import { BOTONES_SOCIALES_LOGIN } from "../constants";
+import { styles } from "./styles";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ function LoginScreen({ navigation }) {
       });
   };
 
-  
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -85,98 +86,34 @@ function LoginScreen({ navigation }) {
               </Text>
             </View>
             <DividerWithText text="O puedes" />
-            {BOTONES_SOCIALES.map((b) => {
-              const iconToDisplay =
-                b.name === "apple"
-                  ? require("../../assets/appleI.png")
-                  : b.name === "facebook"
-                  ? require("../../assets/facebookI.png")
-                  : require("../../assets/googleI.png");
-              return (
-                <SocialMediaButton
-                  key={b.id}
-                  text={b.text}
-                  handleCreateAccount={()=>console.log('prueba')}
-                  icono={() => (
-                    <Image
-                      source={iconToDisplay}
-                      style={{ width: 30, height: 30 }}
-                    />
-                  )}
-                />
-              );
-            })}
+            <View style={{ marginTop: 8, marginBottom: 24 }}>
+              {BOTONES_SOCIALES_LOGIN.map((b) => {
+                const iconToDisplay =
+                  b.name === "apple"
+                    ? require("../../assets/appleI.png")
+                    : b.name === "facebook"
+                      ? require("../../assets/facebookI.png")
+                      : require("../../assets/googleI.png");
+                return (
+                  <SocialMediaButton
+                    key={b.id}
+                    text={b.text}
+                    handleCreateAccount={()=>console.log('prueba')}
+                    icono={() => (
+                      <Image
+                        source={iconToDisplay}
+                        style={{ width: 30, height: 30 }}
+                      />
+                    )}
+                  />
+                );
+              })}
+            </View>
           </View>
         </ScrollView>
       </LinearGradient>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: "100%",
-  },
-  login: {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    width: 336,
-    // height: 533,
-    borderColor: "#000",
-    borderWidth: 1.1,
-    borderRadius: 16,
-    alignItems: "center",
-  },
-  logoPicture: {
-    width: 118,
-    height: 160,
-    top: 20,
-    bottom: 0,
-  },
-  registerText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 16,
-    textAlign: "center",
-  },
-  linkText: {
-    color: "#F5B042",
-  },
-  forgotText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 12,
-    lineHeight: 14,
-    textAlign: "center",
-  },
-  inputText: {
-    width: 301,
-    height: 56,
-    borderRadius: 8,
-    marginTop: 16,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-  },
-  button: {
-    width: 200,
-    height: "auto",
-    borderRadius: 10,
-    fontSize: 12,
-    padding: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-  },
-  social: {
-    width: 50,
-    marginHorizontal: 6,
-  },
-});
 
 export default LoginScreen;
