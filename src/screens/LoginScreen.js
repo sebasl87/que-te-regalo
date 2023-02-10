@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Image, Text, View, ScrollView, Alert } from "react-native";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase-config";
 
@@ -13,6 +10,8 @@ import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
 import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
+import { Button } from "react-native-paper";
+
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -31,7 +30,8 @@ function LoginScreen({ navigation }) {
         console.log(error);
       });
   };
-
+  var provider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => await signInWithPopup(provider);
 
   return (
     <View style={styles.container}>
@@ -74,6 +74,9 @@ function LoginScreen({ navigation }) {
               textButton="Ingresar"
             />
             <View>
+              <Button mode="contained" onPress={signInWithGoogle}>
+                GOOGLE
+              </Button>
               <Text style={styles.forgotText}>
                 Ups! Olvidé mi
                 <Text
@@ -92,13 +95,13 @@ function LoginScreen({ navigation }) {
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
                     : b.name === "facebook"
-                      ? require("../../assets/facebookI.png")
-                      : require("../../assets/googleI.png");
+                    ? require("../../assets/facebookI.png")
+                    : require("../../assets/googleI.png");
                 return (
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={()=>console.log('prueba')}
+                    handleCreateAccount={() => console.log("prueba")}
                     icono={() => (
                       <Image
                         source={iconToDisplay}
