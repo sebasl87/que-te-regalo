@@ -16,6 +16,7 @@ import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
 import { styles } from "./styles";
+import { BOTONES_SOCIALES_REGISTER } from "../constants";
 
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -92,7 +93,7 @@ function RegisterScreen({ navigation }) {
             />
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
-              {BOTONES_SOCIALES.map((b) => {
+              {BOTONES_SOCIALES_REGISTER.map((b) => {
                 const iconToDisplay =
                   b.name === "apple"
                     ? require("../../assets/appleI.png")

@@ -11,7 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
-import { BOTONES_SOCIALES } from "../constants";
+import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
 
 function LoginScreen({ navigation }) {
@@ -87,7 +87,7 @@ function LoginScreen({ navigation }) {
             </View>
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
-              {BOTONES_SOCIALES.map((b) => {
+              {BOTONES_SOCIALES_LOGIN.map((b) => {
                 const iconToDisplay =
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
