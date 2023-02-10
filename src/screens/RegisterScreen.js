@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
 import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
+import { BOTONES_SOCIALES_REGISTER } from "../constants";
 
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -36,15 +37,6 @@ function RegisterScreen({ navigation }) {
       });
   };
 
-  const BOTONES_SOCIALES = [
-    { text: "Ingresar con Apple", name: "apple", id: 0 },
-    {
-      text: "Ingresar con Facebook",
-      name: "facebook",
-      id: 1,
-    },
-    { text: "Ingresar con Google", name: "google", id: 2 },
-  ];
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -91,7 +83,7 @@ function RegisterScreen({ navigation }) {
               textButton="Registrarme"
             />
             <DividerWithText text="O puedes" />
-            {BOTONES_SOCIALES.map((b) => {
+            {BOTONES_SOCIALES_REGISTER.map((b) => {
               const iconToDisplay =
                 b.name === "apple"
                   ? require("../../assets/appleI.png")
