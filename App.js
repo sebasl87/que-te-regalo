@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -30,14 +30,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <PaperProvider theme={theme}>
+        <StatusBar />
         <Stack.Navigator initialRouteName="nidit!">
-          <Stack.Screen name="nidit!" component={LoginScreen} />
+          <Stack.Screen name="nidit!" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
+            options={{ headerShown: false }}
           />
-          <Stack.Screen name="Home" component={NewUserScreen} />
-          <Stack.Screen name="NewUser" component={RegisterScreen} />          
+          <Stack.Screen name="Home" component={NewUserScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="NewUser" component={RegisterScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
