@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
+import { firebaseConfig } from "../../Firebase";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { ResetPassword } from "../components";

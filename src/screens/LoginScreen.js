@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { Image, Text, View, ScrollView, Alert } from "react-native";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
+import React, { useState, useContext } from "react";
+import { Image, Text, View, ScrollView } from "react-native";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import Firebase from "../../Firebase";
 
 import { LinearGradient } from "expo-linear-gradient";
 import LoginWithUser from "../components/LoginWithUser";
@@ -13,13 +10,15 @@ import DividerWithText from "../components/DividerWithText";
 import SocialMediaButton from "../components/SocialMediaButton";
 import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
+import mainContext from "../context/mainContext";
+import { Button } from "react-native-paper";
 
 function LoginScreen({ navigation }) {
+  const { handleGLogin } = useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+  const auth = getAuth(Firebase);
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -31,7 +30,6 @@ function LoginScreen({ navigation }) {
         console.log(error);
       });
   };
-
 
   return (
     <View style={styles.container}>
@@ -85,6 +83,14 @@ function LoginScreen({ navigation }) {
                 </Text>
               </Text>
             </View>
+            <Button
+              style={{ backgroundColor: "#4285F4", marginTop: 20 }}
+              onPress={() => handleGLogin()}
+              mode="contained"
+              icon="google"
+            >
+              Login with Google
+            </Button>
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
               {BOTONES_SOCIALES_LOGIN.map((b) => {
@@ -92,13 +98,13 @@ function LoginScreen({ navigation }) {
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
                     : b.name === "facebook"
-                      ? require("../../assets/facebookI.png")
-                      : require("../../assets/googleI.png");
+                    ? require("../../assets/facebookI.png")
+                    : require("../../assets/googleI.png");
                 return (
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={()=>console.log('prueba')}
+                    handleCreateAccount={() => console.log("prueba")}
                     icono={() => (
                       <Image
                         source={iconToDisplay}
