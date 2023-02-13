@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Image, Text, View, ScrollView, Alert } from "react-native";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase-config";
 
@@ -11,7 +16,6 @@ import SocialMediaButton from "../components/SocialMediaButton";
 import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
 import { Button } from "react-native-paper";
-
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -31,7 +35,15 @@ function LoginScreen({ navigation }) {
       });
   };
   var provider = new GoogleAuthProvider();
-  const signInWithGoogle = async () => await signInWithPopup(provider);
+  const signInWithGoogle = () =>
+    signInWithPopup(auth, provider)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
   return (
     <View style={styles.container}>
