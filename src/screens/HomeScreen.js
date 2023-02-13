@@ -1,13 +1,26 @@
 import { Text, View } from "react-native";
 import MenuTop from "../components/MenuTop.js";
-import UserImage from "../components/UserImage.js";
+import NoItems from "../components/NoItems.js";
+import AddButton from "../components/AddButton.js";
 
 function HomeScreen() {
+    const isEmpty = true;
+    const Tabla = () => {
+        return (
+            <Text>Soy una Tabla</Text>
+        );
+    }
+
     return (
         <>
             <MenuTop />
-            <Text>Homescreen</Text>
-            <UserImage /> 
+            <AddButton />
+            {isEmpty ?
+                <NoItems />
+                :
+                <><Tabla /></>
+            }
+
         </>
 
     );

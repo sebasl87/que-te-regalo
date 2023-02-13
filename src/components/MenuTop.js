@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, Dimensions, TouchableHighlight } from "react-native";
-import { TextInput, Button, Menu, Divider } from "react-native-paper";
+import { StyleSheet, View, Image, Dimensions, TouchableHighlight } from "react-native";
+import { Menu, Divider } from "react-native-paper";
 import UserImage from "./UserImage";
 
 function MenuTop() {
@@ -29,13 +29,13 @@ function MenuTop() {
 
                             }
                             statusBarHeight={50}
-                            theme={{ roundness: 16 }}                            
+                            theme={{ roundness: 16 }}
                         >
                             <UserImage />
                             <Menu.Item onPress={() => { }} title="exequielsosa@gmail.com" titleStyle={{ color: "rgba(0, 0, 0, 0.7)" }}>
                             </Menu.Item>
                             <Divider />
-                            <Menu.Item onPress={() => { }} title="Cerrar sesión" titleStyle={{ fontWeightIdx: 'bold', color: "#F49037" }} />
+                            <Menu.Item onPress={() => { }} title="Cerrar sesión" titleStyle={{ fontWeight: 'bold', color: "#F49037" }} />
                         </Menu>
 
                     </View>
