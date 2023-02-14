@@ -24,7 +24,7 @@ export default function App() {
       <PaperProvider theme={theme}>
         <StatusBar />
         <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={HomeScreen}
+          <Stack.Screen name="Login" component={LoginScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

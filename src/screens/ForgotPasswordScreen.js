@@ -13,6 +13,7 @@ import { firebaseConfig } from "../../firebase-config";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { ResetPassword } from "../components";
+import { styles } from "./styles";
 
 function ForgotPasswordScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -49,16 +50,14 @@ function ForgotPasswordScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-                <TouchableHighlight
-                  onPress={() => navigation.navigate("Login")}
-                >
+              <TouchableHighlight onPress={() => navigation.navigate("Login")} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
                   <Image
                     source={require("../../assets/back.png")}
                     style={styles.backButton}
                   />
                 </TouchableHighlight>
               </View>
-              <View style={styles.logo}>
+              <View style={styles.logoWithBack}>
                 <Image
                   source={require("../../assets/nidit-logo.png")}
                   style={styles.logoPicture}
@@ -66,7 +65,7 @@ function ForgotPasswordScreen({ navigation }) {
               </View>
             </View>
             <View style={{ top: -10 }}>
-              <Text style={styles.registerText}>Restablecer contraseña</Text>
+              <Text style={styles.registerTextHight}>Restablecer contraseña</Text>
               <Text style={styles.instructionsText}>
                 Te enviaremos un email con las instrucciones para restablecer la
                 contraseña.
@@ -83,70 +82,5 @@ function ForgotPasswordScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: "100%",
-  },
-  logoAndBack: {
-    flexDirection: "row",
-    width: "100%",
-  },
-  back: {
-    top: 24,
-    left: 16,
-  },
-  logo: {
-    width: "100%",
-    alignItems: "center",
-    right: 10,
-  },
-  login: {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    width: 336,
-    borderColor: "#000",
-    borderWidth: 1.1,
-    borderRadius: 16,
-    alignItems: "center",
-  },
-  logoPicture: {
-    width: 118,
-    height: 160,
-    top: 20,
-    bottom: 0,
-  },
-  backButton: {
-    width: 14,
-    height: 25,
-    top: 0,
-    bottom: 0,
-  },
-  registerText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 16,
-    lineHeight: 19,
-    textAlign: "center",
-  },
-  instructionsText: {
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 16,
-    textAlign: "left",
-    color: "rgba(0, 0, 0, 0.8)",
-    marginTop: 16,
-    marginBottom: 8,
-    paddingLeft: 8,
-    paddingRight: 8,
-  },
-});
 
 export default ForgotPasswordScreen;
