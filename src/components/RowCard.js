@@ -10,8 +10,6 @@ function RowCard({ wishName, disabled }) {
 
     const closeMenu = () => setVisible(false);
 
-    console.log(wishName);
-
     return (
         <>
             <View style={styles.generalDiv}>
@@ -34,9 +32,9 @@ function RowCard({ wishName, disabled }) {
                                 fontSize: 16,
                                 fontWeight: '400',
                                 color: "#000",
-                                textDecorationLine: disabled && "line-through",
+                                textDecorationLine: disabled ? "line-through" : "none",
                                 textDecorationStyle: disabled && "solid",
-                                textDecorationColor: disabled && "#000"
+                                textDecorationColor: disabled && "#000",
                             }}>{wishName}</Text>
                         </View>
                         <View style={styles.containerMenu}>
@@ -69,8 +67,7 @@ function RowCard({ wishName, disabled }) {
 
 const styles = StyleSheet.create({
     generalDiv: {
-        backgroundColor: "rgba(66, 254, 22, 0.2)",
-        width: "100%",        
+        width: "100%",
         paddingTop: 8,
         paddingLeft: 16,
         paddingRight: 16,

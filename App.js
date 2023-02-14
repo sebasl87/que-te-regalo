@@ -24,40 +24,19 @@ export default function App() {
       <PaperProvider theme={theme}>
         <StatusBar />
         <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={HomeScreen} 
-          options={{ headerShown: false }}
+          <Stack.Screen name="Login" component={HomeScreen}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Home" component={HomeScreen} 
-        //   options={{
-        //     title: 'Home', //Set Header Title
-        //     headerStyle: {
-        //       backgroundColor: '#d8d8d8', //Set Header color
-        //     },
-        //     headerTintColor: 'black', //Set Header text color
-        //     headerTitleStyle: {
-        //       fontWeight: 'bold', //Set Header text style
-        //     },
-        //     headerLeft: () => <Image
-        //     source={require("./assets/menu.png")}
-        //     style={{ width: 34, height: 23 }}
-        //   />,
-        //   // headerLeft: ()=> null,
-        //   headerTitle: () => <Image
-        //   source={require("./assets/IsoLogo.png")}
-        //   style={{ width: 180, height: 60 }}
-        // />,    
-
-
-        //   }}         
-        options={{ headerShown: false }}
+          <Stack.Screen name="Home" component={HomeScreen}
+            options={{ headerShown: false }}
           />
-          <Stack.Screen name="NewUser" component={RegisterScreen} 
-          options={{ headerShown: false }}
+          <Stack.Screen name="NewUser" component={RegisterScreen}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </PaperProvider>
