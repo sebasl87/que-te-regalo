@@ -1,35 +1,21 @@
 import React, { useState, useContext } from "react";
 import { Image, Text, View, ScrollView } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-import Firebase from "../../Firebase";
 
 import { LinearGradient } from "expo-linear-gradient";
-import LoginWithUser from "../components/LoginWithUser";
-import DividerWithText from "../components/DividerWithText";
-import SocialMediaButton from "../components/SocialMediaButton";
+import {
+  LoginWithUser,
+  DividerWithText,
+  SocialMediaButton,
+} from "../components";
+
 import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
 import mainContext from "../context/mainContext";
-import { Button } from "react-native-paper";
 
 function LoginScreen({ navigation }) {
-  const { handleGLogin } = useContext(mainContext);
+  const { handleGLogin, handleLogin } = useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const auth = getAuth(Firebase);
-
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        navigation.navigate("Home");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <View style={styles.container}>
@@ -68,7 +54,7 @@ function LoginScreen({ navigation }) {
             <LoginWithUser
               handleOnChangeTextPass={(text) => setPassword(text)}
               handleOnChangeTextEmail={(text) => setEmail(text)}
-              handleOnPress={handleSignIn}
+              handleOnPress={() => handleLogin(email, password)}
               textButton="Ingresar"
             />
             <View>
@@ -83,14 +69,6 @@ function LoginScreen({ navigation }) {
                 </Text>
               </Text>
             </View>
-            <Button
-              style={{ backgroundColor: "#4285F4", marginTop: 20 }}
-              onPress={() => handleGLogin()}
-              mode="contained"
-              icon="google"
-            >
-              Login with Google
-            </Button>
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
               {BOTONES_SOCIALES_LOGIN.map((b) => {
@@ -104,7 +82,7 @@ function LoginScreen({ navigation }) {
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={() => console.log("prueba")}
+                    handleCreateAccount={() => handleGLogin()}
                     icono={() => (
                       <Image
                         source={iconToDisplay}

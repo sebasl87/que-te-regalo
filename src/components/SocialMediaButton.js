@@ -6,7 +6,7 @@ const SocialMediaButton = ({ text, handleCreateAccount, icono, large }) => {
   return (
     <Button
       mode="contained"
-      onPress={() => handleCreateAccount}
+      onPress={handleCreateAccount}
       style={large ? styles.buttonLarge : styles.button}
       icon={icono}
       buttonColor="rgba(255, 255, 255, 0.8)"

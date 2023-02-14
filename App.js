@@ -45,8 +45,7 @@ function NewUserScreen() {
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-  const [userLogged, setUserLogged] = useState(false);
+export default function App({ navigation }) {
   const [userProfile, setUserProfile] = useState(null);
 
   const auth = getAuth(Firebase);
@@ -62,11 +61,13 @@ export default function App() {
   }, []);
 
   const doLogin = async (email, password) => {
-    setIsLoading(true);
-    //console.log('login' + JSON.stringify(userProfile));
-    signInWithEmailAndPassword(email, password).catch((error) =>
-      console.log(error)
-    );
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const doSignup = async (email, password) => {
@@ -96,6 +97,7 @@ export default function App() {
       userProfile: { userProfile },
       signOutUser: () => signOut(),
       handleLogin: (email, password) => {
+        console.log(email);
         doLogin(email, password);
       },
       handleSignup: (email, password) => {
@@ -115,14 +117,17 @@ export default function App() {
         <PaperProvider theme={theme}>
           <StatusBar />
           <Stack.Navigator initialRouteName="nidit!">
-            <Stack.Screen name="Login" component={LoginScreen} />
-            {/* <Stack.Screen
+            {!userProfile ? (
+              <Stack.Screen name="Home" component={NewUserScreen} />
+            ) : (
+              <Stack.Screen name="Login" component={LoginScreen} />
+            )}
+            <Stack.Screen
               name="ForgotPassword"
               component={ForgotPasswordScreen}
               options={{ headerShown: false }}
-            /> */}
-            <Stack.Screen name="Home" component={NewUserScreen} />
-            {/* <Stack.Screen name="NewUser" component={RegisterScreen} /> */}
+            />
+            <Stack.Screen name="NewUser" component={RegisterScreen} />
           </Stack.Navigator>
         </PaperProvider>
       </NavigationContainer>
