@@ -128,17 +128,28 @@ export default function App() {
           <StatusBar />
           <Stack.Navigator initialRouteName="Login">
             {userProfile ? (
-              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
             ) : (
               <>
-                <Stack.Screen name="Login" component={LoginScreen} />
-
+                <Stack.Screen
+                  name="Login"
+                  component={LoginScreen}
+                  options={{ headerShown: false }}
+                />
                 <Stack.Screen
                   name="ForgotPassword"
                   component={ForgotPasswordScreen}
                   options={{ headerShown: false }}
                 />
-                <Stack.Screen name="NewUser" component={RegisterScreen} />
+                <Stack.Screen
+                  name="NewUser"
+                  component={RegisterScreen}
+                  options={{ headerShown: false }}
+                />
               </>
             )}
           </Stack.Navigator>

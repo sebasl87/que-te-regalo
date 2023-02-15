@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MenuTop, NoItems, RowCard } from "../components";
 import { WHISHES } from "../constants";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
+import mainContext from "../context/mainContext";
 
 function HomeScreen({ visible, animateFrom }) {
+  const { signOutUser } = useContext(mainContext);
+
   const isEmpty = false;
 
   const [isExtended, setIsExtended] = React.useState(true);
@@ -20,8 +23,7 @@ function HomeScreen({ visible, animateFrom }) {
 
   return (
     <>
-      <MenuTop />
-
+      <MenuTop handleClose={signOutUser} />
       <ScrollView onScroll={onScroll}>
         <View
           style={{
