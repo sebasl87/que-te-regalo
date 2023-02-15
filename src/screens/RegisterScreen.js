@@ -47,12 +47,16 @@ function RegisterScreen({ navigation }) {
               <View style={styles.back}>
                 <TouchableHighlight
                   onPress={() => navigation.navigate("Login")}
-                  hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                  hitSlop={{ top: 20, bottom: 20, left: 60, right: 60 }}
+                  activeOpacity={1}
+                  underlayColor="transparent"
                 >
-                  <Image
-                    source={require("../../assets/back.png")}
-                    style={styles.backButton}
-                  />
+                  <View>
+                    <Image
+                      source={require("../../assets/back.png")}
+                      style={styles.backButton}
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View style={styles.logoWithBack}>
@@ -80,8 +84,8 @@ function RegisterScreen({ navigation }) {
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
                     : b.name === "facebook"
-                    ? require("../../assets/facebookI.png")
-                    : require("../../assets/googleI.png");
+                      ? require("../../assets/facebookI.png")
+                      : require("../../assets/googleI.png");
                 return (
                   <SocialMediaButton
                     key={b.id}

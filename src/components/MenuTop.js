@@ -12,6 +12,8 @@ import UserImage from "./UserImage";
 function MenuTop({ handleClose }) {
   const [visible, setVisible] = useState(false);
 
+  console.log('algo', visible)
+
   return (
     <>
       <View style={styles.divMaster}>
@@ -24,10 +26,13 @@ function MenuTop({ handleClose }) {
                 <TouchableHighlight
                   onPress={() => setVisible(true)}
                   hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                  style={styles.plusIconView}
+                  activeOpacity={1}
+                  underlayColor="transparent"
                 >
                   <Image
                     source={require("../../assets/menu.png")}
-                    style={{ width: 34, height: 23, marginTop: 12 }}
+                    style={{ width: 34, height: 28, marginTop: 12 }}
                   />
                 </TouchableHighlight>
               }
@@ -81,6 +86,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
+  plusIconView: {    
+    alignItems: 'center',    
+    
+}
 });
 
 export default MenuTop;
