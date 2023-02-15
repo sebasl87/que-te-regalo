@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import {
   Image,
-  Text,
-  StyleSheet,
+  Text,  
   View,
   ScrollView,
   TouchableHighlight,

@@ -1,14 +1,20 @@
+import React from "react";
 import { MenuTop, NoItems, AddButton, RowCard } from "../components";
 import { WHISHES } from "../constants";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, StyleSheet, Platform, SafeAreaView } from "react-native";
+import { AnimatedFAB } from "react-native-paper";
 
 function HomeScreen() {
     const isEmpty = false;
+
+
+
     return (
         <>
             <MenuTop />
             <ScrollView>
                 <AddButton />
+
                 <View style={{ backgroundColor: "rgba(66, 254, 22, 0.2)", height: "100%", marginBottom: 64 }}>
                     {isEmpty ? <NoItems /> :
                         <>
@@ -20,9 +26,13 @@ function HomeScreen() {
                         </>
                     }
                 </View>
+
             </ScrollView>
+
         </>
     );
 }
+
+
 
 export default HomeScreen;
