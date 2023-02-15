@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, Image } from "react-native";
+import { StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -22,7 +22,7 @@ export default function App() {
       <PaperProvider theme={theme}>
         <StatusBar />
         <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={HomeScreen}
+          <Stack.Screen name="Login" component={LoginScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

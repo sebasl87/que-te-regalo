@@ -22,7 +22,6 @@ function MenuTop() {
                                         style={{ width: 34, height: 23, marginTop: 12 }}
                                     />
                                 </TouchableHighlight>
-
                             }
                             statusBarHeight={50}
                             theme={{ roundness: 16 }}

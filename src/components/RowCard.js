@@ -62,18 +62,28 @@ function RowCard({ wishName, disabled }) {
                     </View>
                 </ScrollView>
                 <Portal>
-                    <Dialog visible={viewDialog} onDismiss={() => setDialog(false)}>
-                        <Dialog.Title>Alert</Dialog.Title>
-                        <Dialog.Content>
-                            <Text variant="bodyMedium">This is simple dialog</Text>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={() => setDialog(false)}>Done</Button>
-                        </Dialog.Actions>
+                    <Dialog visible={viewDialog} onDismiss={() => setDialog(false)} theme={{ roundness: 2 }}>
+                        <Text style={styles.dialogText}>¿Seguro que lo quieres eliminar?</Text>
+                        <View style={styles.dialogButtonContainer}>
+                            <Button
+                                buttonColor="rgba(245, 176, 66, 1)"
+                                onPress={() => setDialog(false)}
+                                textColor="#fff"
+                                style={[styles.dialogButton, styles.dialogFirstButton]}
+                            >
+                                Cancelar</Button>
+                            <Button
+                                buttonColor="rgba(245, 176, 66, 1)"
+                                onPress={() => console.log('acepto la borrada')}
+                                textColor="#fff"
+                                style={styles.dialogButton}
+                            >
+                                Aceptar</Button>
+                        </View>
+
                     </Dialog>
                 </Portal>
             </View>
-
         </>
     );
 }
@@ -89,7 +99,26 @@ const styles = StyleSheet.create({
         width: "100%",
         paddingLeft: 16,
     },
-    containerMenu: {},
+    dialogText: {
+        width: "100%",
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight: "400",
+    },
+    dialogButton: {
+        maxWidth: 105,
+        borderRadius: 8,
+    },
+    dialogButtonContainer: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "center",
+        marginTop: 24,
+        marginBottom: 24,
+    },
+    dialogFirstButton: {
+        marginRight: 8,
+    },
 });
 
 export default RowCard;
