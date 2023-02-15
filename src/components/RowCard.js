@@ -97,6 +97,7 @@ function RowCard({ wishName, disabled }) {
             visible={viewDialog}
             onDismiss={() => setDialog(false)}
             theme={{ roundness: 2 }}
+            style={{backgroundColor: "#fff" }}
           >
             <Text style={styles.dialogText}>
               ¿Seguro que lo quieres eliminar?
