@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Constants from "expo-constants";
 import * as Google from "expo-auth-session/providers/google";
 
@@ -8,7 +8,7 @@ import { Text, View, StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Button, Provider as PaperProvider } from "react-native-paper";
 import mainContext from "./src/context/mainContext";
 import {
   getAuth,
@@ -24,29 +24,19 @@ import {
   LoginScreen,
   RegisterScreen,
   ForgotPasswordScreen,
+  HomeScreen,
 } from "./src/screens";
 import theme from "./src/customTheme";
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-function NewUserScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>New User Screen</Text>
-    </View>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
-export default function App({ navigation }) {
+export default function App() {
   const [userProfile, setUserProfile] = useState(null);
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    expoClientId: Constants.manifest.extra.EXPO_KEY, //From app.json
+    iosClientId: Constants.manifest.extra.IOS_KEY, //From app.json
+    androidClientId: Constants.manifest.extra.ANDROID_KEY, //From app.json
+  });
 
   const auth = getAuth(Firebase);
 
@@ -55,15 +45,15 @@ export default function App({ navigation }) {
       if (user) {
         setUserProfile(user);
       } else {
-        console.log("Fail login");
+        setUserProfile(null);
       }
     });
   }, []);
 
-  const doLogin = async (email, password) => {
+  const doLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigation.navigate("Home");
+        console.log(userCredential);
       })
       .catch((error) => {
         console.log(error);
@@ -71,18 +61,27 @@ export default function App({ navigation }) {
   };
 
   const doSignup = async (email, password) => {
-    setIsLoading(true);
-    //console.log('login' + JSON.stringify(userProfile));
-    createUserWithEmailAndPassword(email, password).catch((error) =>
-      console.log(error)
-    );
+    // const navigation = useNavigation();
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert(error.message);
+      });
   };
 
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: Constants.manifest.extra.EXPO_KEY, //From app.json
-    iosClientId: Constants.manifest.extra.IOS_KEY, //From app.json
-    androidClientId: Constants.manifest.extra.ANDROID_KEY, //From app.json
-  });
+  const doLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("salido");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const Glogin = () => {
     try {
@@ -95,9 +94,8 @@ export default function App({ navigation }) {
   const mainC = useMemo(
     () => ({
       userProfile: { userProfile },
-      signOutUser: () => signOut(),
+      signOutUser: () => doLogout(),
       handleLogin: (email, password) => {
-        console.log(email);
         doLogin(email, password);
       },
       handleSignup: (email, password) => {
@@ -116,18 +114,20 @@ export default function App({ navigation }) {
       <NavigationContainer>
         <PaperProvider theme={theme}>
           <StatusBar />
-          <Stack.Navigator initialRouteName="nidit!">
+          <Stack.Navigator initialRouteName="Login">
             {!userProfile ? (
-              <Stack.Screen name="Home" component={NewUserScreen} />
-            ) : (
               <Stack.Screen name="Login" component={LoginScreen} />
+            ) : (
+              <>
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen
+                  name="ForgotPassword"
+                  component={ForgotPasswordScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen name="NewUser" component={RegisterScreen} />
+              </>
             )}
-            <Stack.Screen
-              name="ForgotPassword"
-              component={ForgotPasswordScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen name="NewUser" component={RegisterScreen} />
           </Stack.Navigator>
         </PaperProvider>
       </NavigationContainer>

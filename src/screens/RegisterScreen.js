@@ -1,51 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Image,
   Text,
   View,
   ScrollView,
-  Alert,
   TouchableHighlight,
 } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../Firebase";
 
 import { LinearGradient } from "expo-linear-gradient";
-import LoginWithUser from "../components/LoginWithUser";
-import DividerWithText from "../components/DividerWithText";
-import SocialMediaButton from "../components/SocialMediaButton";
+import {
+  LoginWithUser,
+  DividerWithText,
+  SocialMediaButton,
+} from "../components";
+
 import { styles } from "./styles";
 import { BOTONES_SOCIALES_REGISTER } from "../constants";
 
+import mainContext from "../context/mainContext";
+
 function RegisterScreen({ navigation }) {
+  const { handleSignup } = useContext(mainContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const handleCreateAccount = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        navigation.navigate("Home");
-      })
-      .catch((error) => {
-        console.log(error);
-        Alert.alert(error.message);
-      });
-  };
-
-  const BOTONES_SOCIALES = [
-    { text: "Registrarme con Apple", name: "apple", id: 0 },
-    {
-      text: "Registrarme con Facebook",
-      name: "facebook",
-      id: 1,
-    },
-    { text: "Registrarme con Google", name: "google", id: 2 },
-  ];
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -66,7 +45,10 @@ function RegisterScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-                <TouchableHighlight onPress={() => navigation.navigate("nidit!")} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
+                <TouchableHighlight
+                  onPress={() => navigation.navigate("nidit!")}
+                  hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                >
                   <Image
                     source={require("../../assets/back.png")}
                     style={styles.backButton}
@@ -88,7 +70,7 @@ function RegisterScreen({ navigation }) {
             <LoginWithUser
               handleOnChangeTextPass={(text) => setPassword(text)}
               handleOnChangeTextEmail={(text) => setEmail(text)}
-              handleOnPress={handleCreateAccount}
+              handleOnPress={() => handleSignup(email, password)}
               textButton="Registrarme"
             />
             <DividerWithText text="O puedes" />
@@ -98,13 +80,13 @@ function RegisterScreen({ navigation }) {
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
                     : b.name === "facebook"
-                      ? require("../../assets/facebookI.png")
-                      : require("../../assets/googleI.png");
+                    ? require("../../assets/facebookI.png")
+                    : require("../../assets/googleI.png");
                 return (
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={handleCreateAccount}
+                    handleCreateAccount={() => console.log("Crear cuenta")}
                     icono={() => (
                       <Image
                         source={iconToDisplay}

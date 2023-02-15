@@ -129,14 +129,14 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   registerText: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontWeight: "400",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
   },
   instructionsText: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontWeight: "400",
     fontSize: 14,
     lineHeight: 16,
