@@ -50,6 +50,10 @@ export default function App() {
     });
   }, []);
 
+  useEffect(() => {
+    response && response.authentication && setUserProfile(response);
+  }, [response]);
+
   const doLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -61,11 +65,9 @@ export default function App() {
   };
 
   const doSignup = async (email, password) => {
-    // const navigation = useNavigation();
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // navigation.navigate("Home");
+        setUserProfile(userCredential);
       })
       .catch((error) => {
         console.log(error);
@@ -76,14 +78,14 @@ export default function App() {
   const doLogout = () => {
     signOut(auth)
       .then(() => {
-        console.log("salido");
+        setUserProfile(null);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const Glogin = () => {
+  const googleLogin = () => {
     try {
       promptAsync();
     } catch (error) {
@@ -101,10 +103,7 @@ export default function App() {
       handleSignup: (email, password) => {
         doSignup(email, password);
       },
-      handleGLogin: () => {
-        //The new login with google handler available to context
-        Glogin();
-      },
+      handleGLogin: () => googleLogin(),
     }),
     []
   );
@@ -115,11 +114,12 @@ export default function App() {
         <PaperProvider theme={theme}>
           <StatusBar />
           <Stack.Navigator initialRouteName="Login">
-            {!userProfile ? (
-              <Stack.Screen name="Login" component={LoginScreen} />
+            {userProfile ? (
+              <Stack.Screen name="Home" component={HomeScreen} />
             ) : (
               <>
-                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Login" component={LoginScreen} />
+
                 <Stack.Screen
                   name="ForgotPassword"
                   component={ForgotPasswordScreen}
