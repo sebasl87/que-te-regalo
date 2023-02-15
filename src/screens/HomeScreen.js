@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { MenuTop, NoItems, RowCard } from "../components";
+import React, { useContext, useState } from "react";
+import { MenuTop, NoItems, RowCard, AddNewWish } from "../components";
 import { WHISHES } from "../constants";
-import { View, ScrollView, StyleSheet } from "react-native";
-import { AnimatedFAB } from "react-native-paper";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { AnimatedFAB, Portal, Dialog } from "react-native-paper";
 import mainContext from "../context/mainContext";
 
 function HomeScreen({ visible, animateFrom }) {
@@ -10,7 +10,8 @@ function HomeScreen({ visible, animateFrom }) {
 
   const isEmpty = false;
 
-  const [isExtended, setIsExtended] = React.useState(true);
+  const [isExtended, setIsExtended] = useState(true);
+  const [addWish, setAddWish] = useState(false);
 
   const onScroll = ({ nativeEvent }) => {
     const currentScrollPosition =
@@ -50,7 +51,7 @@ function HomeScreen({ visible, animateFrom }) {
         icon={"plus"}
         label={"Nuevo deseo "}
         extended={isExtended}
-        onPress={() => console.log("Pressed")}
+        onPress={() => setAddWish(true)}
         visible={visible}
         animateFrom={"right"}
         iconMode={"static"}
@@ -58,6 +59,17 @@ function HomeScreen({ visible, animateFrom }) {
         color="white"
         theme={{ backgroundColor: "red" }}
       />
+      <Portal>
+        <Dialog
+          visible={addWish}
+          onDismiss={() => setAddWish(false)}
+          theme={{ roundness: 2 }}
+          style={{backgroundColor: "#fff" }}
+          dismissable={false}
+        >
+          <AddNewWish closeAddWishDialog={() => setAddWish(false)} />
+        </Dialog>
+      </Portal>
     </>
   );
 }
