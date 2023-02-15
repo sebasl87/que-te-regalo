@@ -4,11 +4,11 @@ import * as Google from "expo-auth-session/providers/google";
 
 import Firebase from "./Firebase";
 
-import { Text, View, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button, Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 import mainContext from "./src/context/mainContext";
 import {
   getAuth,
@@ -16,8 +16,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signOut,
-  GoogleAuthProvider,
-  signInWithCredential,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import {
@@ -85,6 +84,16 @@ export default function App() {
       });
   };
 
+  const doReset = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const googleLogin = () => {
     try {
       promptAsync();
@@ -102,6 +111,9 @@ export default function App() {
       },
       handleSignup: (email, password) => {
         doSignup(email, password);
+      },
+      handleResetPassword: (email) => {
+        doReset(email);
       },
       handleGLogin: () => googleLogin(),
     }),

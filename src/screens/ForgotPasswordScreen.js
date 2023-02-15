@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Image,
   Text,
@@ -7,27 +7,15 @@ import {
   ScrollView,
   TouchableHighlight,
 } from "react-native";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../Firebase";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { ResetPassword } from "../components";
+import mainContext from "../context/mainContext";
 
 function ForgotPasswordScreen({ navigation }) {
+  const { handleResetPassword } = useContext(mainContext);
+
   const [email, setEmail] = useState("");
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const resetPassword = () => {
-    return sendPasswordResetEmail(auth, email)
-      .then((a) => {
-        alert("Password reset email sent");
-        navigation.navigate("Login");
-      })
-      .catch((error) => console.log(error));
-  };
 
   return (
     <View style={styles.container}>
@@ -74,7 +62,7 @@ function ForgotPasswordScreen({ navigation }) {
             </View>
             <ResetPassword
               textButton="Enviar"
-              handleOnPress={resetPassword}
+              handleOnPress={() => handleResetPassword(email)}
               handleOnChangeTextEmail={setEmail}
             />
           </View>
