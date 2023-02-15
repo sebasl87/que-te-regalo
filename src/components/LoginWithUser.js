@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 
@@ -8,6 +8,9 @@ function LoginWithUser({
   handleOnPress,
   textButton,
 }) {
+
+  const [hidePass, setHidePass] = useState(true);
+
   return (
     <>
       <TextInput
@@ -23,6 +26,16 @@ function LoginWithUser({
         style={styles.inputText}
         onChangeText={handleOnChangeTextPass}
         theme={{ roundness: 8 }}
+        secureTextEntry={hidePass ? true : false}
+        right={
+          <TextInput.Icon
+            icon={hidePass ? "eye" : "eye-off"}
+            onPress={() => {{ hidePass ? setHidePass(false) : setHidePass(true) }}}
+            style={{paddingTop: 6}}
+            iconColor="rgba(0, 0, 0, 0.3)"
+          />
+        }
+        
       />
       <View style={{ marginTop: 8, marginBottom: 8 }}>
         <Button
@@ -43,7 +56,7 @@ const styles = StyleSheet.create({
     height: 56,
     marginTop: 12,
     borderRadius: 16,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",    
   },
 });
 

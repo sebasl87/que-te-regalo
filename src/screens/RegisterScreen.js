@@ -46,7 +46,7 @@ function RegisterScreen({ navigation }) {
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
                 <TouchableHighlight
-                  onPress={() => navigation.navigate("nidit!")}
+                  onPress={() => navigation.navigate("Login")}
                   hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
                 >
                   <Image

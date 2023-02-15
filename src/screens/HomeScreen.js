@@ -1,21 +1,75 @@
-import React, { useContext } from "react";
+import React from "react";
+import { MenuTop, NoItems, RowCard } from "../components";
+import { WHISHES } from "../constants";
+import { View, ScrollView, StyleSheet } from "react-native";
+import { AnimatedFAB } from "react-native-paper";
 
-import { Text, View } from "react-native";
-import { Button } from "react-native-paper";
+function HomeScreen({ visible, animateFrom }) {
+  const isEmpty = false;
 
-import mainContext from "../context/mainContext";
+  const [isExtended, setIsExtended] = React.useState(true);
 
-function HomeScreen() {
-  const { signOutUser } = useContext(mainContext);
+  const onScroll = ({ nativeEvent }) => {
+    const currentScrollPosition =
+      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+
+    setIsExtended(currentScrollPosition <= 0);
+  };
+
+  const fabStyle = { [animateFrom]: 16 };
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>New User Screen</Text>
-      <Button mode="contained" onPress={() => signOutUser()}>
-        logout
-      </Button>
-    </View>
+    <>
+      <MenuTop />
+
+      <ScrollView onScroll={onScroll}>
+        <View
+          style={{
+            backgroundColor: "rgba(66, 254, 22, 0.2)",
+            height: "100%",
+            paddingTop: 16,
+            marginBottom: 86,
+          }}
+        >
+          {isEmpty ? (
+            <NoItems />
+          ) : (
+            <>
+              {WHISHES.map((e) => {
+                return (
+                  <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
+                );
+              })}
+            </>
+          )}
+        </View>
+      </ScrollView>
+      <AnimatedFAB
+        icon={"plus"}
+        label={"Nuevo deseo "}
+        extended={isExtended}
+        onPress={() => console.log("Pressed")}
+        visible={visible}
+        animateFrom={"right"}
+        iconMode={"static"}
+        style={[styles.fabStyle]}
+        color="white"
+        theme={{ backgroundColor: "red" }}
+      />
+    </>
   );
 }
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+  },
+  fabStyle: {
+    bottom: 16,
+    right: 16,
+    position: "absolute",
+    backgroundColor: "#F5B042",
+  },
+});

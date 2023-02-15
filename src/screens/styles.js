@@ -103,5 +103,6 @@ export const styles = StyleSheet.create({
         color: "rgba(0, 0, 0, 0.8)",
         marginTop: 16,
         marginBottom: 8,
+        width: 301,
     },
 });

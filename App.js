@@ -25,6 +25,7 @@ import {
   ForgotPasswordScreen,
   HomeScreen,
 } from "./src/screens";
+
 import theme from "./src/customTheme";
 
 const Stack = createNativeStackNavigator();
