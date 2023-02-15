@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Image, Dimensions, TouchableHighlight } from "react-native";
 import { Menu, Divider } from "react-native-paper";
 import UserImage from "./UserImage";
 
 function MenuTop() {
 
-    const [visible, setVisible] = React.useState(false);
-
-    const openMenu = () => setVisible(true);
-
-    const closeMenu = () => setVisible(false);
+    const [visible, setVisible] = useState(false);
 
     return (
         <>
@@ -18,9 +14,9 @@ function MenuTop() {
                     <View style={styles.menuContainer}>
                         <Menu
                             visible={visible}
-                            onDismiss={closeMenu}
+                            onDismiss={() => setVisible(false)}
                             anchor={
-                                <TouchableHighlight onPress={openMenu} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
+                                <TouchableHighlight onPress={() => setVisible(true)} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
                                     <Image
                                         source={require("../../assets/menu.png")}
                                         style={{ width: 34, height: 23, marginTop: 12 }}
@@ -58,6 +54,7 @@ const styles = StyleSheet.create({
         height: 72,
         marginTop: 0,
         backgroundColor: "rgba(245, 176, 66, 0.2)",
+        zIndex: 1,
     },
     generalContainer: {
         flexDirection: "row",

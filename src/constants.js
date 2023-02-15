@@ -40,5 +40,6 @@ export const WHISHES = [
   { text: "Zapatillas Running Nikle talle 45", disabled: true, id: 18 },
   { text: "Zapatillas Running Nikle talle 45", disabled: false, id: 19 },
   { text: "Zapatillas Running Nikle talle 45", disabled: false, id: 20 },
-  { text: "Zapatillas Running Nikle talle 45", disabled: true, id: 21 },
+  { text: "Zapatillas Running Nikle talle 60", disabled: true, id: 21 },
+  
 ];

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
 
 function NoItems() {
 
@@ -24,8 +24,8 @@ function NoItems() {
 const styles = StyleSheet.create({
     divMaster: {
         width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(66, 254, 22, 0.2)",
+        height: Dimensions.get('window').height,
+        paddingTop: 32,
     },
     generalContainer: {
         width: "100%",
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         textAlign: "center",
     },
-
 });
 
 export default NoItems;

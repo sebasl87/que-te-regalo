@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, TouchableHighlight, ScrollView } from "react-native";
-import { Menu } from "react-native-paper";
+import { Menu, Dialog, Portal, Button } from "react-native-paper";
 
 function RowCard({ wishName, disabled }) {
 
     const [visible, setVisible] = React.useState(false);
-
-    const openMenu = () => setVisible(true);
-
-    const closeMenu = () => setVisible(false);
+    const [viewDialog, setDialog] = useState(false);
+    const handleClick = () => {
+        setDialog(true);
+        setVisible(false);
+    }
 
     return (
         <>
@@ -40,9 +41,9 @@ function RowCard({ wishName, disabled }) {
                         <View style={styles.containerMenu}>
                             <Menu
                                 visible={visible}
-                                onDismiss={closeMenu}
+                                onDismiss={() => setVisible(false)}
                                 anchor={
-                                    <TouchableHighlight onPress={openMenu} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
+                                    <TouchableHighlight onPress={() => setVisible(true)} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
                                         <Image
                                             source={require('../../assets/tableIcon.png')}
                                             style={{ width: 36, height: 36, tintColor: "rgba(0, 0, 0, 0.8)" }}
@@ -54,13 +55,25 @@ function RowCard({ wishName, disabled }) {
                                 style={{ width: 110 }}
                             >
                                 <Menu.Item onPress={() => { }} title="Editar" titleStyle={{ color: "rgba(0, 0, 0, 0.8)", fontSize: 16 }} />
-                                <Menu.Item onPress={() => { }} title="Eliminar" titleStyle={{ color: "rgba(0, 0, 0, 0.8)", fontSize: 16 }} />
+                                <Menu.Item onPress={handleClick} title="Eliminar" titleStyle={{ color: "rgba(0, 0, 0, 0.8)", fontSize: 16 }} />
                                 <Menu.Item onPress={() => { }} title={disabled ? "Desmarcar" : "Marcar"} titleStyle={{ color: "rgba(0, 0, 0, 0.8)", fontSize: 16 }} />
                             </Menu>
                         </View>
                     </View>
                 </ScrollView>
+                <Portal>
+                    <Dialog visible={viewDialog} onDismiss={() => setDialog(false)}>
+                        <Dialog.Title>Alert</Dialog.Title>
+                        <Dialog.Content>
+                            <Text variant="bodyMedium">This is simple dialog</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                            <Button onPress={() => setDialog(false)}>Done</Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
             </View>
+
         </>
     );
 }
