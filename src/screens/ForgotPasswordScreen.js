@@ -1,33 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Image,
-  Text,  
+  Text,
   View,
   ScrollView,
   TouchableHighlight,
 } from "react-native";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { ResetPassword } from "../components";
+import mainContext from "../context/mainContext";
 import { styles } from "./styles";
 
 function ForgotPasswordScreen({ navigation }) {
+  const { handleResetPassword } = useContext(mainContext);
+
   const [email, setEmail] = useState("");
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const resetPassword = () => {
-    return sendPasswordResetEmail(auth, email)
-      .then((a) => {
-        alert("Password reset email sent");
-        navigation.navigate("Login");
-      })
-      .catch((error) => console.log(error));
-  };
 
   return (
     <View style={styles.container}>
@@ -49,7 +37,10 @@ function ForgotPasswordScreen({ navigation }) {
           <View style={styles.login}>
             <View style={styles.logoAndBack}>
               <View style={styles.back}>
-              <TouchableHighlight onPress={() => navigation.navigate("Login")} hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}>
+                <TouchableHighlight
+                  onPress={() => navigation.navigate("Login")}
+                  hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                >
                   <Image
                     source={require("../../assets/back.png")}
                     style={styles.backButton}
@@ -64,7 +55,9 @@ function ForgotPasswordScreen({ navigation }) {
               </View>
             </View>
             <View style={{ top: -10 }}>
-              <Text style={styles.registerTextHight}>Restablecer contraseña</Text>
+              <Text style={styles.registerTextHight}>
+                Restablecer contraseña
+              </Text>
               <Text style={styles.instructionsText}>
                 Te enviaremos un email con las instrucciones para restablecer la
                 contraseña.
@@ -72,7 +65,7 @@ function ForgotPasswordScreen({ navigation }) {
             </View>
             <ResetPassword
               textButton="Enviar"
-              handleOnPress={resetPassword}
+              handleOnPress={() => handleResetPassword(email)}
               handleOnChangeTextEmail={setEmail}
             />
           </View>

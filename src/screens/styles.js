@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         bottom: 0,
     },
     registerText: {
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "400",
         fontSize: 16,
         lineHeight: 16,
@@ -48,14 +48,14 @@ export const styles = StyleSheet.create({
     },
     linkText: {
         color: "#F5B042",
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "800",
         fontSize: 16,
         lineHeight: 16,
         textAlign: "center",
     },
     forgotText: {
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "400",
         fontSize: 16,
         lineHeight: 16,
@@ -88,14 +88,14 @@ export const styles = StyleSheet.create({
         right: 10,
     },
     registerTextHight: {
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "400",
         fontSize: 18,
         lineHeight: 19,
         textAlign: "center",
     },
     instructionsText: {
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "400",
         fontSize: 14,
         lineHeight: 16,

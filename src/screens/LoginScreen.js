@@ -1,37 +1,21 @@
-import React, { useState } from "react";
-import { Image, Text, View, ScrollView, Alert } from "react-native";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../firebase-config";
+import React, { useState, useContext } from "react";
+import { Image, Text, View, ScrollView } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
-import LoginWithUser from "../components/LoginWithUser";
-import DividerWithText from "../components/DividerWithText";
-import SocialMediaButton from "../components/SocialMediaButton";
+import {
+  LoginWithUser,
+  DividerWithText,
+  SocialMediaButton,
+} from "../components";
+
 import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
+import mainContext from "../context/mainContext";
 
 function LoginScreen({ navigation }) {
+  const { handleGLogin, handleLogin } = useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        navigation.navigate("Home");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
 
   return (
     <View style={styles.container}>
@@ -70,7 +54,7 @@ function LoginScreen({ navigation }) {
             <LoginWithUser
               handleOnChangeTextPass={(text) => setPassword(text)}
               handleOnChangeTextEmail={(text) => setEmail(text)}
-              handleOnPress={handleSignIn}
+              handleOnPress={() => handleLogin(email, password)}
               textButton="Ingresar"
             />
             <View>
@@ -92,13 +76,13 @@ function LoginScreen({ navigation }) {
                   b.name === "apple"
                     ? require("../../assets/appleI.png")
                     : b.name === "facebook"
-                      ? require("../../assets/facebookI.png")
-                      : require("../../assets/googleI.png");
+                    ? require("../../assets/facebookI.png")
+                    : require("../../assets/googleI.png");
                 return (
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={()=>console.log('prueba')}
+                    handleCreateAccount={() => handleGLogin()}
                     icono={() => (
                       <Image
                         source={iconToDisplay}

@@ -1,69 +1,77 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MenuTop, NoItems, RowCard } from "../components";
 import { WHISHES } from "../constants";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
+import mainContext from "../context/mainContext";
 
 function HomeScreen({ visible, animateFrom }) {
-    const isEmpty = false;
+  const { signOutUser } = useContext(mainContext);
 
-    const [isExtended, setIsExtended] = React.useState(true);
+  const isEmpty = false;
 
-    const onScroll = ({ nativeEvent }) => {
-        const currentScrollPosition =
-            Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+  const [isExtended, setIsExtended] = React.useState(true);
 
-        setIsExtended(currentScrollPosition <= 0);
-    };
+  const onScroll = ({ nativeEvent }) => {
+    const currentScrollPosition =
+      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
 
-    const fabStyle = { [animateFrom]: 16 };
+    setIsExtended(currentScrollPosition <= 0);
+  };
 
-    return (
-        <>
-            <MenuTop />
+  const fabStyle = { [animateFrom]: 16 };
 
-            <ScrollView onScroll={onScroll}>
-
-                <View style={{ backgroundColor: "rgba(66, 254, 22, 0.2)", height: "100%", paddingTop: 16, marginBottom: 86 }}>
-                    {isEmpty ?
-                        <NoItems />
-                        :
-                        <>
-                            {WHISHES.map(e => {
-                                return (
-                                    <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
-                                );
-                            })}
-                        </>
-                    }
-                </View>
-            </ScrollView>
-            <AnimatedFAB
-                icon={'plus'}
-                label={'Nuevo deseo '}
-                extended={isExtended}
-                onPress={() => console.log('Pressed')}
-                visible={visible}
-                animateFrom={'right'}
-                iconMode={'static'}
-                style={[styles.fabStyle]}
-                color="white"
-                theme={{ backgroundColor: 'red' }}
-            />
-        </>
-    );
+  return (
+    <>
+      <MenuTop handleClose={signOutUser} />
+      <ScrollView onScroll={onScroll}>
+        <View
+          style={{
+            backgroundColor: "rgba(66, 254, 22, 0.2)",
+            height: "100%",
+            paddingTop: 16,
+            marginBottom: 86,
+          }}
+        >
+          {isEmpty ? (
+            <NoItems />
+          ) : (
+            <>
+              {WHISHES.map((e) => {
+                return (
+                  <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
+                );
+              })}
+            </>
+          )}
+        </View>
+      </ScrollView>
+      <AnimatedFAB
+        icon={"plus"}
+        label={"Nuevo deseo "}
+        extended={isExtended}
+        onPress={() => console.log("Pressed")}
+        visible={visible}
+        animateFrom={"right"}
+        iconMode={"static"}
+        style={[styles.fabStyle]}
+        color="white"
+        theme={{ backgroundColor: "red" }}
+      />
+    </>
+  );
 }
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-    },
-    fabStyle: {
-        bottom: 16,
-        right: 16,
-        position: 'absolute',
-        backgroundColor: "#F5B042",
-    },
+  container: {
+    flexGrow: 1,
+  },
+  fabStyle: {
+    bottom: 16,
+    right: 16,
+    position: "absolute",
+    backgroundColor: "#F5B042",
+  },
 });
