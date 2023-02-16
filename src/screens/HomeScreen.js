@@ -4,6 +4,7 @@ import { WHISHES } from "../constants";
 import { View, ScrollView, StyleSheet, Text } from "react-native";
 import { AnimatedFAB, Portal, Dialog } from "react-native-paper";
 import mainContext from "../context/mainContext";
+import Hamburger from 'react-native-animated-hamburger';
 
 function HomeScreen({ visible, animateFrom }) {
   const { signOutUser } = useContext(mainContext);
@@ -43,6 +44,13 @@ function HomeScreen({ visible, animateFrom }) {
                   <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
                 );
               })}
+<Hamburger
+type="spinCross"
+active={()=> setIsExtended(false)}
+onPress={() => setIsExtended(true)}
+underlayColor="transparent"
+color="black">
+ </Hamburger>
             </>
           )}
         </View>

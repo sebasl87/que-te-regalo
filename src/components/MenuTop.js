@@ -3,45 +3,40 @@ import {
   StyleSheet,
   View,
   Image,
-  Dimensions,
-  TouchableHighlight,
+  Dimensions,  
 } from "react-native";
 import { Menu, Divider } from "react-native-paper";
 import UserImage from "./UserImage";
+import Hamburger from 'react-native-animated-hamburger';
 
 function MenuTop({ handleClose }) {
-  const [visible, setVisible] = useState(false);
-
-  console.log('algo', visible)
-
+  const [showMenu, setShowMenu] = useState(false);
+  
   return (
     <>
       <View style={styles.divMaster}>
         <View style={styles.generalContainer}>
           <View style={styles.menuContainer}>
             <Menu
-              visible={visible}
-              onDismiss={() => setVisible(false)}
+              visible={showMenu}
+              onDismiss={() => setShowMenu(false)}
               anchor={
-                <TouchableHighlight
-                  onPress={() => setVisible(true)}
-                  hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
-                  style={styles.plusIconView}
-                  activeOpacity={1}
-                  underlayColor="transparent"
-                >
-                  <Image
-                    source={require("../../assets/menu.png")}
-                    style={{ width: 34, height: 28, marginTop: 12 }}
-                  />
-                </TouchableHighlight>
+                <View style={{ marginTop: 10 }}>
+                  <Hamburger
+                    type="spinCross"
+                    active={showMenu}
+                    onPress={() => setShowMenu(true)}
+                    underlayColor="transparent"
+                    color="black">
+                  </Hamburger>
+                </View>
               }
               statusBarHeight={50}
               theme={{ roundness: 16 }}
             >
               <UserImage />
               <Menu.Item
-                onPress={() => {}}
+                onPress={() => { }}
                 title="exequielsosa@gmail.com"
                 titleStyle={{ color: "rgba(0, 0, 0, 0.7)" }}
               ></Menu.Item>
@@ -85,11 +80,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 100,
     justifyContent: "center",
     flexDirection: "row",
-  },
-  plusIconView: {    
-    alignItems: 'center',    
-    
-}
+  },  
 });
 
 export default MenuTop;
