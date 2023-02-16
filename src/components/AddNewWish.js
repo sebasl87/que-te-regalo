@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         width: "100%",
     },
+    inputText: {
+        width: "100%",        
+        backgroundColor: "rgba(255, 255, 255, 1)",    
+      },
 });
 
 export default AddNewWish;

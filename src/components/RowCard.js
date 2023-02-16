@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   ScrollView,
 } from "react-native";
-import { Menu, Dialog, Portal, Button } from "react-native-paper";
+import { Menu, Dialog, Portal, Button, TextInput } from "react-native-paper";
 
 function RowCard({ wishName, disabled }) {
   const [visible, setVisible] = React.useState(false);
@@ -58,6 +58,9 @@ function RowCard({ wishName, disabled }) {
                   <TouchableHighlight
                     onPress={() => setVisible(true)}
                     hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                    style={styles.plusIconView}
+                    activeOpacity={0.6}
+                    underlayColor="rgba(245, 176, 66, 0.7)"
                   >
                     <Image
                       source={require("../../assets/tableIcon.png")}
@@ -67,7 +70,7 @@ function RowCard({ wishName, disabled }) {
                         tintColor: "rgba(0, 0, 0, 0.8)",
                       }}
                     />
-                  </TouchableHighlight>
+                  </TouchableHighlight>            
                 }
                 statusBarHeight={36}
                 theme={{ roundness: 16 }}
@@ -158,6 +161,13 @@ const styles = StyleSheet.create({
   dialogFirstButton: {
     marginRight: 8,
   },
+  plusIconView: {
+    width: 36,
+    height: 36,    
+    borderRadius: 50,
+    alignItems: 'center',
+    
+}
 });
 
 export default RowCard;

@@ -18,9 +18,7 @@ function HomeScreen({ visible, animateFrom }) {
       Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
 
     setIsExtended(currentScrollPosition <= 0);
-  };
-
-  const fabStyle = { [animateFrom]: 16 };
+  };  
 
   return (
     <>
@@ -43,6 +41,7 @@ function HomeScreen({ visible, animateFrom }) {
                   <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
                 );
               })}
+
             </>
           )}
         </View>
@@ -64,7 +63,7 @@ function HomeScreen({ visible, animateFrom }) {
           visible={addWish}
           onDismiss={() => setAddWish(false)}
           theme={{ roundness: 2 }}
-          style={{backgroundColor: "#fff" }}
+          style={{ backgroundColor: "#fff" }}
           dismissable={false}
         >
           <AddNewWish closeAddWishDialog={() => setAddWish(false)} />

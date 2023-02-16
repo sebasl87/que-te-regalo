@@ -40,11 +40,15 @@ function ForgotPasswordScreen({ navigation }) {
                 <TouchableHighlight
                   onPress={() => navigation.navigate("Login")}
                   hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
+                  activeOpacity={1}
+                  underlayColor="transparent"
                 >
-                  <Image
-                    source={require("../../assets/back.png")}
-                    style={styles.backButton}
-                  />
+                  <View>
+                    <Image
+                      source={require("../../assets/back.png")}
+                      style={styles.backButton}
+                    />
+                  </View>
                 </TouchableHighlight>
               </View>
               <View style={styles.logoWithBack}>
