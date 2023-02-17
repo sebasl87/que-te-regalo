@@ -24,7 +24,7 @@ function NoItems() {
 const styles = StyleSheet.create({
     divMaster: {
         width: "100%",
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height - 156,
         paddingTop: 32,
     },
     generalContainer: {

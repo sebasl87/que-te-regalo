@@ -1,15 +1,12 @@
 import React, { useContext, useState } from "react";
 import { MenuTop, NoItems, RowCard, AddNewWish } from "../components";
-import { WHISHES } from "../constants";
-import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { MORE_WISHES } from "../constants";
+import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import { AnimatedFAB, Portal, Dialog } from "react-native-paper";
 import mainContext from "../context/mainContext";
 
-function HomeScreen({ visible, animateFrom }) {
+function HomeScreen({ visible }) {
   const { signOutUser } = useContext(mainContext);
-
-  const isEmpty = false;
-
   const [isExtended, setIsExtended] = useState(true);
   const [addWish, setAddWish] = useState(false);
 
@@ -18,30 +15,33 @@ function HomeScreen({ visible, animateFrom }) {
       Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
 
     setIsExtended(currentScrollPosition <= 0);
-  };  
+  };
+
+  const WHISHES = MORE_WISHES.data.getWishlistUsers.wishlist;
+
+  const isEmpty = WHISHES.length === 0;
 
   return (
     <>
       <MenuTop handleClose={signOutUser} />
-      <ScrollView onScroll={onScroll}>
+      <ScrollView onScroll={onScroll} >
         <View
           style={{
-            backgroundColor: "rgba(66, 254, 22, 0.2)",
-            height: "100%",
             paddingTop: 16,
-            marginBottom: 86,
+            paddingBottom: 84,
+            flex: 1,
           }}
         >
           {isEmpty ? (
             <NoItems />
+
           ) : (
             <>
               {WHISHES.map((e) => {
                 return (
-                  <RowCard wishName={e.text} key={e.id} disabled={e.disabled} />
+                  <RowCard wishName={e.title} key={e.id} disabled={false} />
                 );
               })}
-
             </>
           )}
         </View>

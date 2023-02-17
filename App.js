@@ -6,7 +6,7 @@ import Firebase from "./Firebase";
 
 import { StatusBar } from "react-native";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
 import mainContext from "./src/context/mainContext";
@@ -121,9 +121,12 @@ export default function App() {
     []
   );
 
+  const navTheme = DefaultTheme;
+  navTheme.colors.background = "rgba(66, 254, 22, 0.15)";
+
   return (
     <mainContext.Provider value={mainC}>
-      <NavigationContainer>
+      <NavigationContainer theme={navTheme}>
         <PaperProvider theme={theme}>
           <StatusBar />
           <Stack.Navigator initialRouteName="Login">
