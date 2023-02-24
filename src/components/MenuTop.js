@@ -8,9 +8,15 @@ import {
 import { Menu, Divider } from "react-native-paper";
 import UserImage from "./UserImage";
 import Hamburger from 'react-native-animated-hamburger';
+import {useNavigation} from "@react-navigation/native";
+import {useDrawerStatus} from '@react-navigation/drawer';
 
 function MenuTop({ handleClose }) {
   const [showMenu, setShowMenu] = useState(false);
+
+  const nav = useNavigation();
+  const drawerStatus = useDrawerStatus();
+  const open = drawerStatus === 'open';  
   
   return (
     <>
@@ -24,8 +30,8 @@ function MenuTop({ handleClose }) {
                 <View style={{ marginTop: 10 }}>
                   <Hamburger
                     type="spinCross"
-                    active={showMenu}
-                    onPress={() => setShowMenu(true)}
+                    active={open}                    
+                    onPress={() => nav.openDrawer()}
                     underlayColor="transparent"
                     color="black">
                   </Hamburger>

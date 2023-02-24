@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Constants from "expo-constants";
 import * as Google from "expo-auth-session/providers/google";
+import {Root} from './src/components';
 
 import Firebase from "./Firebase";
 
@@ -126,16 +127,24 @@ export default function App() {
 
   return (
     <mainContext.Provider value={mainC}>
-      <NavigationContainer theme={navTheme}>
+      <NavigationContainer theme={navTheme}>      
         <PaperProvider theme={theme}>
           <StatusBar />
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator initialRouteName="Login" options={{ headerShown: false }}>
             {userProfile ? (
+              <>
+              <Stack.Screen
+          name="Root"
+          component={Root}
+          options={{ headerShown: false }}
+        />
+                
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}
                 options={{ headerShown: false }}
-              />
+                />
+              </>
             ) : (
               <>
                 <Stack.Screen
