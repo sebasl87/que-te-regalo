@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         paddingLeft: 16,
     },
-hello:{
-    fontWeight: "800",
-}
+    hello: {
+        fontWeight: "800",
+    }
 });
