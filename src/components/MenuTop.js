@@ -1,52 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
   Image,
-  Dimensions,  
+  Dimensions,
 } from "react-native";
-import { Menu, Divider } from "react-native-paper";
-import UserImage from "./UserImage";
 import Hamburger from 'react-native-animated-hamburger';
+import { useNavigation } from "@react-navigation/native";
+import { useDrawerStatus } from '@react-navigation/drawer';
 
-function MenuTop({ handleClose }) {
-  const [showMenu, setShowMenu] = useState(false);
-  
+function MenuTop() {
+
+  const nav = useNavigation();
+  const drawerStatus = useDrawerStatus();
+  const open = drawerStatus === 'open';
+
   return (
     <>
       <View style={styles.divMaster}>
         <View style={styles.generalContainer}>
           <View style={styles.menuContainer}>
-            <Menu
-              visible={showMenu}
-              onDismiss={() => setShowMenu(false)}
-              anchor={
-                <View style={{ marginTop: 10 }}>
-                  <Hamburger
-                    type="spinCross"
-                    active={showMenu}
-                    onPress={() => setShowMenu(true)}
-                    underlayColor="transparent"
-                    color="black">
-                  </Hamburger>
-                </View>
-              }
-              statusBarHeight={50}
-              theme={{ roundness: 16 }}
-            >
-              <UserImage />
-              <Menu.Item
-                onPress={() => { }}
-                title="exequielsosa@gmail.com"
-                titleStyle={{ color: "rgba(0, 0, 0, 0.7)" }}
-              ></Menu.Item>
-              <Divider />
-              <Menu.Item
-                onPress={() => handleClose()}
-                title="Cerrar sesión"
-                titleStyle={{ fontWeight: "bold", color: "#F49037" }}
-              />
-            </Menu>
+            <View style={{ marginTop: 10 }}>
+              <Hamburger
+                type="spinCross"
+                active={open}
+                onPress={() => nav.openDrawer()}
+                underlayColor="transparent"
+                color="black">
+              </Hamburger>
+            </View>
           </View>
           <View style={styles.logoContainer}>
             <Image
@@ -80,7 +62,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 100,
     justifyContent: "center",
     flexDirection: "row",
-  },  
+  },
 });
 
 export default MenuTop;
