@@ -13,7 +13,7 @@ import { styles } from "./styles";
 import mainContext from "../context/mainContext";
 
 function LoginScreen({ navigation }) {
-  const { handleGLogin, handleLogin } = useContext(mainContext);
+  const { handleGLogin, handleLogin, handleFBLogin } = useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -82,7 +82,7 @@ function LoginScreen({ navigation }) {
                   <SocialMediaButton
                     key={b.id}
                     text={b.text}
-                    handleCreateAccount={() => handleGLogin()}
+                    handleCreateAccount={() => handleFBLogin()}
                     icono={() => (
                       <Image
                         source={iconToDisplay}
