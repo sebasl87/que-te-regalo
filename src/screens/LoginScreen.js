@@ -8,7 +8,6 @@ import {
   SocialMediaButton,
 } from "../components";
 
-import { BOTONES_SOCIALES_LOGIN } from "../constants";
 import { styles } from "./styles";
 import mainContext from "../context/mainContext";
 
@@ -71,27 +70,36 @@ function LoginScreen({ navigation }) {
             </View>
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
-              {BOTONES_SOCIALES_LOGIN.map((b) => {
-                const iconToDisplay =
-                  b.name === "apple"
-                    ? require("../../assets/appleI.png")
-                    : b.name === "facebook"
-                    ? require("../../assets/facebookI.png")
-                    : require("../../assets/googleI.png");
-                return (
-                  <SocialMediaButton
-                    key={b.id}
-                    text={b.text}
-                    handleCreateAccount={() => handleFBLogin()}
-                    icono={() => (
-                      <Image
-                        source={iconToDisplay}
-                        style={{ width: 30, height: 30 }}
-                      />
-                    )}
+              <SocialMediaButton
+                text="Ingresar con Apple"
+                handleCreateAccount={() => handleFBLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/appleI.png")}
+                    style={{ width: 30, height: 30 }}
                   />
-                );
-              })}
+                )}
+              />
+              <SocialMediaButton
+                text="Ingresar con Facebook"
+                handleCreateAccount={() => handleFBLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/facebookI.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}
+              />
+              <SocialMediaButton
+                text="Ingresar con Google"
+                handleCreateAccount={() => handleGLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/googleI.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}
+              />
             </View>
           </View>
         </ScrollView>

@@ -15,12 +15,11 @@ import {
 } from "../components";
 
 import { styles } from "./styles";
-import { BOTONES_SOCIALES_REGISTER } from "../constants";
 
 import mainContext from "../context/mainContext";
 
 function RegisterScreen({ navigation }) {
-  const { handleSignup } = useContext(mainContext);
+  const { handleSignup, handleFBLogin, handleGLogin } = useContext(mainContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -79,28 +78,36 @@ function RegisterScreen({ navigation }) {
             />
             <DividerWithText text="O puedes" />
             <View style={{ marginTop: 8, marginBottom: 24 }}>
-              {BOTONES_SOCIALES_REGISTER.map((b) => {
-                const iconToDisplay =
-                  b.name === "apple"
-                    ? require("../../assets/appleI.png")
-                    : b.name === "facebook"
-                      ? require("../../assets/facebookI.png")
-                      : require("../../assets/googleI.png");
-                return (
-                  <SocialMediaButton
-                    key={b.id}
-                    text={b.text}
-                    handleCreateAccount={() => console.log("Crear cuenta")}
-                    icono={() => (
-                      <Image
-                        source={iconToDisplay}
-                        style={{ width: 30, height: 30 }}
-                      />
-                    )}
-                    large
+              <SocialMediaButton
+                text="Registrarme con Apple"
+                handleCreateAccount={() => handleFBLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/appleI.png")}
+                    style={{ width: 30, height: 30 }}
                   />
-                );
-              })}
+                )}
+              />
+              <SocialMediaButton
+                text="Registrarme con Facebook"
+                handleCreateAccount={() => handleFBLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/facebookI.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}
+              />
+              <SocialMediaButton
+                text="Registrarme con Google"
+                handleCreateAccount={() => handleGLogin()}
+                icono={() => (
+                  <Image
+                    source={require("../../assets/googleI.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}
+              />
             </View>
           </View>
         </ScrollView>
