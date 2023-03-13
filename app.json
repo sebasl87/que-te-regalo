@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "nidit.net.que-te-regalo"
+      "package": "com.sebasl87.queteregalo"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">que-te-regalo</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="facebook_app_id">3511377539141536</string>
+  <string name="fb_login_protocol_scheme">fb3511377539141536</string>
+<string name="facebook_client_token">c228f01581ae2fce0c11ee2e77e61506</string>
+</resources>

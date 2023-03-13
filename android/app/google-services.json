@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "759530795975",
+    "project_id": "queteregalo-ec23b",
+    "storage_bucket": "queteregalo-ec23b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759530795975:android:47ae5326340d1c1ea39fe2",
+        "android_client_info": {
+          "package_name": "com.sebasl87.queteregalo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759530795975-1696td7cmpqemsnubdctlstesprgrmsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sebasl87.queteregalo",
+            "certificate_hash": "450da33d340a74461003d534afe14e8934b3db9f"
+          }
+        },
+        {
+          "client_id": "759530795975-8dkceoaj0hbp8j37sj22n8vhdarps6mk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sebasl87.queteregalo",
+            "certificate_hash": "89b65389688aae346242c469e94725a035234634"
+          }
+        },
+        {
+          "client_id": "759530795975-7jm547qf7fk5o16kc7aoua3vi1udinub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhiFSxENXCvNMRhkGbizAaLzdy_g6YqAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759530795975-7jm547qf7fk5o16kc7aoua3vi1udinub.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "759530795975-9s7hfn1e8q5ehmg3qtlodrdkp7607al0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nidit.net.que-te-regalo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
