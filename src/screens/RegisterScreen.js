@@ -19,8 +19,8 @@ import { styles } from "./styles";
 import mainContext from "../context/mainContext";
 
 function RegisterScreen({ navigation }) {
-  const { handleSignup, handleFBLogin, handleGLogin } = useContext(mainContext);
-
+  const { handleALogin, handleGLogin, handleSignup, handleFBLogin } =
+    useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -80,7 +80,7 @@ function RegisterScreen({ navigation }) {
             <View style={{ marginTop: 8, marginBottom: 24 }}>
               <SocialMediaButton
                 text="Registrarme con Apple"
-                handleCreateAccount={() => handleFBLogin()}
+                handleCreateAccount={() => handleALogin()}
                 icono={() => (
                   <Image
                     source={require("../../assets/appleI.png")}
