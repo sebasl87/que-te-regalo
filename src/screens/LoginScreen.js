@@ -12,7 +12,8 @@ import { styles } from "./styles";
 import mainContext from "../context/mainContext";
 
 function LoginScreen({ navigation }) {
-  const { handleGLogin, handleLogin, handleFBLogin } = useContext(mainContext);
+  const { handleALogin, handleGLogin, handleLogin, handleFBLogin } =
+    useContext(mainContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -72,7 +73,7 @@ function LoginScreen({ navigation }) {
             <View style={{ marginTop: 8, marginBottom: 24 }}>
               <SocialMediaButton
                 text="Ingresar con Apple"
-                handleCreateAccount={() => handleFBLogin()}
+                handleCreateAccount={() => handleALogin()}
                 icono={() => (
                   <Image
                     source={require("../../assets/appleI.png")}

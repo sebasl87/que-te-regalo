@@ -19,6 +19,7 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { appleAuth } from '@invertase/react-native-apple-authentication';
 
 import {
   LoginScreen,
@@ -28,7 +29,7 @@ import {
 } from "./src/screens";
 
 import theme from "./src/customTheme";
-import auth from "@react-native-firebase/auth";
+// import auth from "@react-native-firebase/auth";
 import { LoginManager, AccessToken } from "react-native-fbsdk-next";
 
 const Stack = createNativeStackNavigator();
@@ -133,6 +134,29 @@ export default function App() {
     return auth().signInWithCredential(facebookCredential);
   };
 
+  const appleLogin = async () => {
+    // Start the sign-in request
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+    });
+
+    // Ensure Apple returned a user identityToken
+    if (!appleAuthRequestResponse.identityToken) {
+      throw new Error("Apple Sign-In failed - no identify token returned");
+    }
+
+    // Create a Firebase credential from the response
+    const { identityToken, nonce } = appleAuthRequestResponse;
+    const appleCredential = auth.AppleAuthProvider.credential(
+      identityToken,
+      nonce
+    );
+
+    // Sign the user in with the credential
+    return auth().signInWithCredential(appleCredential);
+  };
+
   const mainC = useMemo(
     () => ({
       userProfile: { userProfile },
@@ -148,6 +172,7 @@ export default function App() {
       },
       handleGLogin: () => googleLogin(),
       handleFBLogin: () => facebookLogin(),
+      handleALogin: () => appleLogin(),
     }),
     []
   );
